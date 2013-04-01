@@ -1,1 +1,4 @@
-;
+define(function(require){
+
+	
+})
