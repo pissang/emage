@@ -1,4 +1,1 @@
-define(function(require){
-
-	
-})
+define(["require"],function(e){});
