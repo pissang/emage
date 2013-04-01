@@ -12,12 +12,7 @@
 	//=========================
 	// Load Library
 	//=========================
-	$LAB.script("require.js")
-		.script("jquery.js")
-		.script("director.js")
-		.script("underscore.js")
-		.script('ZeroClipboard.js')
-		.script("three.js")
+	$LAB.script("lib.js")
 		.wait(boot);
 
 	//========================

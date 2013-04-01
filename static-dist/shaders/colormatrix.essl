@@ -1,0 +1,14 @@
+varying vec2 vUv;
+
+uniform sampler2D texture;
+
+uniform mat4 colorMatrix;
+uniform float intensity;
+
+void main()
+{
+	vec4 tex = texture2D(texture, vUv);
+	vec4 outputColor = tex * colorMatrix;
+
+	gl_FragColor = intensity * outputColor + ( (1.0-intensity) * tex );
+}
