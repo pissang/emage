@@ -1,0 +1,30 @@
+Color Adjustment:
+ ✔ Brightness @done (13-03-29 20:50)
+ ✔ Exposure @done (13-03-29 20:39)
+ ✔ Grayscale @done (13-03-29 20:39)
+ ✔ Contrast @done (13-03-29 20:57)
+ ✔ Saturation @done (13-03-30 20:08)
+ ✔ Hue @done (13-03-30 23:16)
+ ✔ Gamma @done (13-03-30 23:16)
+ ☐ RGBFilter
+ ✔ HueFilter @done (13-03-31 21:25)
+ ☐ ToneCurveFilter
+ ✔ LookupFilter @done (13-03-31 21:25)
+-----------------------
+ ✔ Amatorka @done (13-03-31 21:25)
+ ✔ MissEtikate @done (13-03-31 21:25)
+ ☐ SoftElegance
+ ☐ Monochrome
+ ☐ Haze
+ ✔ Sepia @done (13-03-31 10:23)
+ ☐ Histogram
+
+Image Processing:
+ ✔ Gaussian @done (13-03-29 20:39)
+ ☐ Sharpen
+ ☐ Unsharp
+ ☐ FastBlur
+ ☐ Sobal
+Base:
+ ✔ blend pass @done (13-04-01 11:20)
+ ✔ two input pin @done (13-04-01 11:20)

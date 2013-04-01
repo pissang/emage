@@ -1,0 +1,10 @@
+<application>
+	<vbox height="100%">
+		<hbox>
+			<region prefer="70" name="navigator" controller="@binding[navigator]"></region>
+			<region flex="1" name="viewport" controller="@binding[viewport]" style="margin:20px;"></region>
+			<region prefer="250" name="layers" controller="@binding[layers]"></region>
+			<region prefer="200" name="filters" controller="@binding[filters]"></region>
+		</hbox>
+	</vbox>
+</application>

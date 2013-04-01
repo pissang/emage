@@ -1,0 +1,3 @@
+<container id="Viewport" onresize="@binding[onResize]">
+	<viewport onrender="@binding[onRender]"></viewport>
+</container>
