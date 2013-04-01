@@ -1,1 +1,1 @@
-;
+define(["require"],function(e){});
