@@ -1,0 +1,30 @@
+varying vec2 vUv;
+uniform sampler2D texture;
+
+uniform float brightness;
+uniform float contrast;
+uniform float exposure;
+uniform float gamma;
+uniform float saturation;
+
+// Values from "Graphics Shaders: Theory and Practice" by Bailey and Cunningham
+const vec3 w = vec3(0.2125, 0.7154, 0.0721);
+
+void main()
+{
+	vec4 tex = texture2D( texture, vUv);
+
+	// brightness
+	vec3 color = tex.rgb + vec3(brightness);
+	// contrast
+	color = (color-vec3(0.5))*contrast+vec3(0.5);
+	// exposure
+	color = color * pow(2.0, exposure);
+	// gamma
+	color = pow(color, vec3(gamma));
+	// saturation
+	float luminance = dot( color, w );
+	color = mix(vec3(luminance), color, saturation);
+	
+	gl_FragColor = vec4(color, tex.a);
+}

@@ -1,0 +1,1 @@
+define(["require","qpf"],function(e){var t=e("qpf"),n=t.use("components/meta/meta"),r=t.use("knockout"),i=n.derive(function(){return{tag:"canvas"}},{type:"VIEWPORT",css:"viewport",initialize:function(){this.renderer=new THREE.WebGLRenderer({canvas:this.$el[0]})}});return n.provideBinding("viewport",i),i});

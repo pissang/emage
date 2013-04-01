@@ -1,0 +1,14 @@
+varying vec2 vUv;
+uniform sampler2D texture;
+uniform float saturation;
+
+ // Values from "Graphics Shaders: Theory and Practice" by Bailey and Cunningham
+ const vec3 w = vec3(0.2125, 0.7154, 0.0721);
+
+void main()
+{
+	vec4 tex = texture2D( texture, vUv );
+	float luminance = dot( tex.rgb, w );
+
+	gl_FragColor = vec4(mix(vec3(luminance), tex.rgb, saturation), tex.w);
+}
