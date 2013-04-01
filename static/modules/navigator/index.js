@@ -51,6 +51,7 @@ define(function(require){
 		nav.$el.find(".qpf-ui-navlink").removeClass("active");
 		$this.addClass("active");
 	})
+	var video;
 	function switchToCloud(){
 		$(".image-list").show();
 	}
@@ -58,7 +59,7 @@ define(function(require){
 		$(".image-list").hide();
 		var tex = viewport.texture;
 
-		var video = document.createElement('video');
+		video = document.createElement('video');
 		tex.minFilter = THREE.LinearFilter;
 		tex.magFilter = THREE.LinearFilter;
 		tex.image = video;

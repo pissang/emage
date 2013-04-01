@@ -13,7 +13,7 @@ Color Adjustment:
 -----------------------
  ✔ Amatorka @done (13-03-31 21:25)
  ✔ MissEtikate @done (13-03-31 21:25)
- ☐ SoftElegance
+ ✔ SoftElegance @done (13-04-01 21:22)
  ☐ Monochrome
  ☐ Haze
  ✔ Sepia @done (13-03-31 10:23)
@@ -24,7 +24,11 @@ Image Processing:
  ☐ Sharpen
  ☐ Unsharp
  ☐ FastBlur
- ☐ Sobal
+ ✔ Sobal @done (13-04-01 21:22)
+ ✔ Threshold @done (13-04-01 21:23)
+ ☐ Canny
+
 Base:
  ✔ blend pass @done (13-04-01 11:20)
  ✔ two input pin @done (13-04-01 11:20)
+ ☐ imageWidth and imageHeight

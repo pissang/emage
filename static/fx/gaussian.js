@@ -16,10 +16,10 @@ define({
 				name : "Horizontal Blur Size",
 				ui : "range",
 				type : 'f',
-				precision : 4,
-				max : 0.01,
+				precision : 1,
+				max : 10,
 				min : 0,
-				value : 1/256
+				value : 3
 			}
 		}
 	}, {
@@ -31,10 +31,10 @@ define({
 				name : "Vertical Blur Size",
 				ui : "range",
 				type : 'f',
-				precision : 4,
-				max : 0.01,
+				precision :1,
+				max : 10,
 				min : 0,
-				value : 1/256
+				value : 3
 			}
 		}
 	}]

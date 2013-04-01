@@ -2,12 +2,14 @@ define({
 	filters : [{
 		title : "Gaussian",
 		name : "gaussian",
-		description : "高斯模糊"
+		description : ""
 	}, {
 		title : "Sepia",
 		name : "sepia",
 		description : ""
-	}, {
+	},
+	// Instgram
+	{
 		title : "Miss Etikate",
 		name : "missetikate",
 		description : ""
@@ -16,8 +18,36 @@ define({
 		name : "amatorka",
 		description : ""
 	}, {
+		title : "Grayscale",
+		name : "grayscale"
+	},
+	{
 		title : "Soft Elegance",
 		name : "softelegance",
 		description : ""
+	}, 
+	//
+	{
+		title : "Sketch",
+		name : "sketch"
+	},
+	{
+		title : "Toon",
+		name : "toon"
+	},
+	{
+		title : "Smooth Toon",
+		name : "smoothtoon"
+	},
+	// edge detections
+	{
+		title : "Sobel Edge Detection",
+		name : "sobel"
+	}, {
+		title : "Threshold Edge Detection",
+		name : "thresholdedge"
+	}, {
+		title : "Canny Edge Detection",
+		name : "canny"
 	}]
 })

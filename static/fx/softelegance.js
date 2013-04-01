@@ -32,7 +32,7 @@ define(function(require){
 			parameters : {
 				blurSize : {
 					type : "f",
-					value : 9.7/1024
+					value : 9.7
 				}
 			}
 		});
@@ -44,7 +44,7 @@ define(function(require){
 			parameters : {
 				blurSize : {
 					type : "f",
-					value : 9.7/1024
+					value : 9.7
 				}
 			}
 		});

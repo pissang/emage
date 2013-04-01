@@ -1,0 +1,42 @@
+// Sobel edge detection
+// http://en.wikipedia.org/wiki/Sobel_operator
+//
+varying vec2 vUv;
+uniform sampler2D texture;
+
+uniform float imageWidth;
+uniform float imageHeight;
+
+uniform float threshold;
+
+void main(){
+
+	vec2 offset = vec2(1.0/imageWidth, 1.0/imageHeight);
+
+	// top left
+	float topLeft = texture2D(texture, vUv+vec2(-offset.x, -offset.y)).r;
+	// top
+	float top = texture2D(texture, vUv+vec2(0, -offset.y)).r;
+	// top right
+	float topRight = texture2D(texture, vUv+vec2(offset.x, -offset.y)).r;
+	// left
+	float left = texture2D(texture, vUv+vec2(-offset.x, 0)).r;
+	// center
+	float center = texture2D( texture, vUv).r;
+	// right
+	float right = texture2D(texture, vUv+vec2(offset.x, 0)).r;
+	// bottom left
+	float bottomLeft = texture2D(texture, vUv+vec2(-offset.x, offset.y)).r;
+	// bottom
+	float bottom = texture2D(texture, vUv+vec2(0, offset.y)).r;
+	// bottom right
+	float bottomRight = texture2D(texture, vUv+offset).r;
+
+	float h = -topLeft-2.0*top-topRight+bottomLeft+2.0*bottom+bottomRight;
+	float v = -bottomLeft-2.0*left-topLeft+bottomRight+2.0*right+topRight;
+
+	float mag = length(vec2(h,v));
+	mag = step(threshold, mag);
+
+	gl_FragColor = vec4(vec3(mag), 1.0);
+}
