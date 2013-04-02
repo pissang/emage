@@ -4770,18 +4770,16 @@ ko.bindingHandlers["qpf_view"] = {
 $.fn.qpf = function( op, viewModel ){
 	op = op || "get";
 	if( op === "get"){
-		if( this.length === 1){
-			return Base.getByDom(this[0]);
-		}else if( this.length > 1){
-			var result = [];
-			this.each(function(){
-				var item = Base.getByDom(this);
-				if( item ){
-					result.push(item);
-				}
-			})
-			return result;
-		}
+		if( op === "get"){
+            var result = [];
+            this.each(function(){
+                var item = Base.getByDom(this);
+                if( item ){
+                    result.push(item);
+                }
+            })
+            return result;
+        }
 	}else if( op === "init"){
 		this.each(function(){
 			ko.applyBindings(viewModel, this);
@@ -8379,7 +8377,7 @@ var Range = Meta.derive(function(){
 			percentage = ( value - min ) / ( max - min ),
 
 			size = (this._boxSize-this._sliderSize)*percentage;
-		
+
 		if( this._boxSize > 0 ){
 			this._setOffset(size);
 		}else{	//incase the element is still not in the document

@@ -18,8 +18,9 @@ define(function(require){
 		template : layerHTML,
 
 		afterResize : function(){
+			
 			_.each(this.$el.find(".qpf-parameter-component").qpf("get"),function(item){
-				// item.afterResize();
+				item.afterResize();
 			});
 			Widget.prototype.afterResize.call(this);
 		}

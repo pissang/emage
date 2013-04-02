@@ -62,7 +62,8 @@ define(function(require){
 				ItemView = this.itemView(),
 				result = [];
 
-			var differences = ko.utils.compareArrays(oldArray, newArray);
+			var differences = ko.utils.compareArrays(oldArray, newArray),
+				newChildren = [];
 			_.each(differences, function(item){
 				if( item.status === "retained"){
 					var index = oldArray.indexOf(item.value);
@@ -71,14 +72,17 @@ define(function(require){
 					var newChild = new ItemView({
 						attributes : item.value
 					});
-					newChild.render();
 					result[item.index] = newChild;
 					children.splice(item.index, 0, newChild);
-				}else if(item.status === "deleted"){
-
+					newChildren.push(newChild);
 				}
 			}, this)
 			this.children( result );
+			// render after it is appended in the dom
+			// so the component like range will be resized proply
+			_.each(newChildren, function(c){
+				c.render();
+			})
 		},
 
 		_unSelectAll : function(){
