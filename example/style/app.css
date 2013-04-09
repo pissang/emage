@@ -1,0 +1,410 @@
+/*---------------------------------------------------
+    LESS Prefixer
+  ---------------------------------------------------
+    
+    All of the CSS3 fun, none of the prefixes!
+
+    As a rule, you can use the CSS properties you
+    would expect just by adding a '.':
+
+    box-shadow => .box-shadow(@args)
+
+    Also, when shorthand is available, arguments are
+    not parameterized. Learn CSS, not LESS Prefixer.
+
+    -------------------------------------------------
+    TABLE OF CONTENTS
+    (*) denotes a syntax-sugar helper
+    -------------------------------------------------
+
+        .animation(@args)
+            .animation-delay(@delay)
+            .animation-direction(@direction)
+            .animation-duration(@duration)
+            .animation-iteration-count(@count)
+            .animation-name(@name)
+            .animation-play-state(@state)
+            .animation-timing-function(@function)
+        .background-size(@args)
+        .border-radius(@args)
+        .box-shadow(@args)
+            .inner-shadow(@args) *
+        .box-sizing(@args)
+            .border-box() *
+            .content-box() *
+        .columns(@args)
+            .column-count(@count)
+            .column-gap(@gap)
+            .column-rule(@args)
+            .column-width(@width)
+        .gradient(@default,@start,@stop) *
+            .linear-gradient-top(@default,@color1,@stop1,@color2,@stop2,[@color3,@stop3,@color4,@stop4])*
+            .linear-gradient-left(@default,@color1,@stop1,@color2,@stop2,[@color3,@stop3,@color4,@stop4])*
+        .opacity(@factor)
+        .transform(@args)
+            .rotate(@deg)
+            .scale(@factor)
+            .translate(@x,@y)
+            .translate3d(@x,@y,@z)
+            .translateHardware(@x,@y) *
+        .text-shadow(@args)
+        .transition(@args)
+            .transition-delay(@delay)
+            .transition-duration(@duration)
+            .transition-property(@property)
+            .transition-timing-function(@function)
+
+
+
+    Credit to LESS Elements for the motivation and
+    to CSS3Please.com for implementation.
+
+    Copyright (c) 2012 Joel Sutherland
+    MIT Licensed:
+    http://www.opensource.org/licenses/mit-license.php
+
+-----------------------------------------------------*/
+/* Animation */
+/* Background Size */
+/* Border Radius */
+/* Box Shadows */
+/* Box Sizing */
+/* Columns */
+/* Gradients */
+/* Opacity */
+/* Text Shadow */
+/* Transforms */
+/* Transitions */
+body {
+  margin: 0px;
+  background-image: url(imgs/black-Linen.png);
+  overflow: hidden;
+}
+.qpf-ui-application > div > .qpf-container-item {
+  width: 100%;
+  height: 100%;
+}
+#Gallery .qpf-ui-panel {
+  border-radius: 0px;
+}
+#Gallery .qpf-ui-panel .qpf-panel-header {
+  border-radius: 0px;
+}
+#Gallery .qpf-icon {
+  width: 15px;
+  height: 15px;
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+}
+#Gallery .qpf-icon.add {
+  background-image: url(imgs/add.svg);
+}
+#Gallery .qpf-ui-icon-button {
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+}
+#Gallery .qpf-ui-icon-button .qpf-icon {
+  background-size: 18px 18px;
+  width: 30px;
+  height: 30px;
+  background-position: 50% 50%;
+}
+#Navigator.qpf-ui-panel {
+  background: none;
+  position: relative;
+  z-index: 10;
+}
+#Navigator.qpf-ui-panel .qpf-panel-header {
+  display: none;
+}
+#Navigator.qpf-ui-panel .qpf-panel-body {
+  padding: 0px;
+  padding-top: 40px;
+  overflow: visible;
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink {
+  padding: 4px 0px;
+  cursor: pointer;
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink .icon {
+  width: 20px;
+  background-size: 20px 20px;
+  height: 20px;
+  margin: 5px 23px;
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink .icon.local {
+  background-image: url(imgs/local.svg);
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink .icon.cloud {
+  background-image: url(imgs/cloud.svg);
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink .icon.camera {
+  background-image: url(imgs/camera.svg);
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink .title {
+  text-align: center;
+  color: white;
+  line-height: 25px;
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink:hover {
+  box-shadow: inset 0px 0px 5px black;
+}
+#Navigator.qpf-ui-panel .qpf-ui-navlink.active {
+  background-color: #315E99;
+}
+#Viewport {
+  background-color: #949494;
+  box-shadow: 0px 0px 20px black;
+}
+#Viewport .qpf-ui-toggle {
+  position: absolute;
+  bottom: 60px;
+  width: 80px;
+  height: 28px;
+  cursor: pointer;
+  background: #333;
+  margin: 20px auto;
+  border-radius: 50px;
+  position: relative;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+#Viewport .qpf-ui-toggle input {
+  display: none;
+}
+#Viewport .qpf-ui-toggle:after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  height: 2px;
+  width: 52px;
+  border-radius: 50px;
+  background: #111;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+#Viewport .qpf-ui-toggle label {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease;
+  position: absolute;
+  top: 4px;
+  z-index: 1;
+  left: 4px;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  background: #fcfff4;
+  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
+}
+#Viewport .qpf-ui-toggle label:after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background: #333;
+  left: 6px;
+  top: 6px;
+  box-shadow: inset 0px 1px 1px #000000, 0px 1px 0px rgba(255, 255, 255, 0.9);
+}
+#Viewport .qpf-ui-toggle input[type=checkbox]:checked + label {
+  left: 54px;
+}
+#Viewport .qpf-ui-toggle input[type=checkbox]:checked + label:after {
+  background: #00bf00;
+}
+#ImageList {
+  position: relative;
+}
+#ImageList .wrapper {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+#ImageList .image-list {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#ImageList .image-list .qpf-container-item {
+  float: left;
+}
+#ImageList .image-list .qpf-ui-image-item .qpf-image {
+  height: 80px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px;
+  cursor: pointer;
+}
+#ImageList .image-list .qpf-ui-image-item .qpf-image:hover {
+  height: 100px;
+}
+#ImageList .image-list .qpf-ui-image-item img {
+  height: 80px;
+}
+#ImageList .qpf-ui-icon-button {
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  border-radius: 15px;
+}
+#ImageList .qpf-ui-icon-button.button-left {
+  left: 0px;
+}
+#ImageList .qpf-ui-icon-button.button-right {
+  right: 0px;
+}
+#ImageList .qpf-icon.left {
+  background-image: url(imgs/arrow-left.svg);
+}
+#ImageList .qpf-icon.left:hover {
+  background-image: url(imgs/arrow-left-hover.svg);
+}
+#ImageList .qpf-icon.left:active {
+  background-image: url(imgs/arrow-left-active.svg);
+}
+#ImageList .qpf-icon.right {
+  background-image: url(imgs/arrow-right.svg);
+}
+#ImageList .qpf-icon.right:hover {
+  background-image: url(imgs/arrow-right-hover.svg);
+}
+#ImageList .qpf-icon.right:active {
+  background-image: url(imgs/arrow-right-active.svg);
+}
+#Layers .qpf-panel-body {
+  padding: 0px;
+}
+#Layers .qpf-ui-layer {
+  margin: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px black;
+}
+#Layers .qpf-ui-layer .qpf-layer-header {
+  height: 25px;
+  background-color: #3f3f3f;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(99% rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  border-bottom: 1px solid black;
+  border-top: 1px solid #646464;
+  border-radius: 3px 3px 0px 0px;
+}
+#Layers .qpf-ui-layer .qpf-layer-header .qpf-layer-title {
+  line-height: 25px;
+  color: #B8B8B8;
+  padding-left: 10px;
+}
+#Layers .qpf-ui-layer .qpf-layer-parameters {
+  padding: 10px;
+  background-color: #2B2929;
+  border-radius: 0px 0px 3px 3px;
+}
+#Layers .qpf-ui-layer .qpf-layer-parameters > ul {
+  margin: 0px;
+  padding: 0px;
+}
+#Layers .qpf-ui-layer .qpf-layer-parameters > ul > li {
+  list-style: none;
+}
+#Layers .qpf-ui-layer .qpf-layer-parameters > ul > li > label {
+  color: #6D6D6D;
+  margin: 5px;
+  font-size: 12px;
+  display: block;
+}
+#Histogram.qpf-ui-panel {
+  border-radius: 3px;
+  background-color: #2B2929;
+}
+#Histogram.qpf-ui-panel .qpf-panel-header {
+  border-radius: 3px 3px 0px 0px;
+}
+#Histogram.qpf-ui-panel .qpf-panel-body {
+  border-radius: 0px 0px 3px 3px;
+  padding: 0px;
+}
+#Histogram.qpf-ui-panel .qpf-ui-histogram {
+  background-color: #7C7C7C;
+  box-shadow: inset 0px 0px 5px #000;
+}
+#Filters .qpf-panel-body {
+  padding: 0px;
+  overflow-y: scroll;
+}
+#Filters .qpf-ui-filter {
+  border-bottom: 1px solid #272727;
+  border-top: 1px solid #585353;
+  overflow: hidden;
+}
+#Filters .qpf-ui-filter .qpf-filter-header {
+  height: 40px;
+  position: relative;
+  background-color: #3f3f3f;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.05)), color-stop(99% rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  cursor: pointer;
+}
+#Filters .qpf-ui-filter .qpf-filter-icon {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+#Filters .qpf-ui-filter .qpf-filter-icon img {
+  width: 30px;
+  height: 30px;
+  background-image: url(imgs/picture.svg);
+  background-size: 30px 30px;
+  margin: 5px;
+}
+#Filters .qpf-ui-filter .qpf-filter-title {
+  float: left;
+}
+#Filters .qpf-ui-filter .qpf-filter-title h5 {
+  color: #BEBEBE;
+  margin: 0px;
+  line-height: 40px;
+}
+#Filters .qpf-ui-filter .qpf-filter-op {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+}
+#Filters .qpf-ui-filter .qpf-filter-description p {
+  color: #8A8989;
+  padding: 10px;
+  margin: 0px;
+}
+#Filters .qpf-fitlers-search {
+  display: block;
+  background-color: #B1B1B1;
+  margin: 3px;
+}
+#Filters .qpf-fitlers-search input {
+  color: black;
+  float: none;
+  line-height: 18px;
+}

@@ -1,0 +1,737 @@
+/**
+ * Base style of all componennts
+ */
+/*---------------------------------------------------
+    LESS Prefixer
+  ---------------------------------------------------
+    
+    All of the CSS3 fun, none of the prefixes!
+
+    As a rule, you can use the CSS properties you
+    would expect just by adding a '.':
+
+    box-shadow => .box-shadow(@args)
+
+    Also, when shorthand is available, arguments are
+    not parameterized. Learn CSS, not LESS Prefixer.
+
+    -------------------------------------------------
+    TABLE OF CONTENTS
+    (*) denotes a syntax-sugar helper
+    -------------------------------------------------
+
+        .animation(@args)
+            .animation-delay(@delay)
+            .animation-direction(@direction)
+            .animation-duration(@duration)
+            .animation-iteration-count(@count)
+            .animation-name(@name)
+            .animation-play-state(@state)
+            .animation-timing-function(@function)
+        .background-size(@args)
+        .border-radius(@args)
+        .box-shadow(@args)
+            .inner-shadow(@args) *
+        .box-sizing(@args)
+            .border-box() *
+            .content-box() *
+        .columns(@args)
+            .column-count(@count)
+            .column-gap(@gap)
+            .column-rule(@args)
+            .column-width(@width)
+        .gradient(@default,@start,@stop) *
+            .linear-gradient-top(@default,@color1,@stop1,@color2,@stop2,[@color3,@stop3,@color4,@stop4])*
+            .linear-gradient-left(@default,@color1,@stop1,@color2,@stop2,[@color3,@stop3,@color4,@stop4])*
+        .opacity(@factor)
+        .transform(@args)
+            .rotate(@deg)
+            .scale(@factor)
+            .translate(@x,@y)
+            .translate3d(@x,@y,@z)
+            .translateHardware(@x,@y) *
+        .text-shadow(@args)
+        .transition(@args)
+            .transition-delay(@delay)
+            .transition-duration(@duration)
+            .transition-property(@property)
+            .transition-timing-function(@function)
+
+
+
+    Credit to LESS Elements for the motivation and
+    to CSS3Please.com for implementation.
+
+    Copyright (c) 2012 Joel Sutherland
+    MIT Licensed:
+    http://www.opensource.org/licenses/mit-license.php
+
+-----------------------------------------------------*/
+/* Animation */
+/* Background Size */
+/* Border Radius */
+/* Box Shadows */
+/* Box Sizing */
+/* Columns */
+/* Gradients */
+/* Opacity */
+/* Text Shadow */
+/* Transforms */
+/* Transitions */
+body {
+  font-family: "Helvetica", "Arial", "黑体";
+  font-size: 14px;
+}
+.qpf-ui-button,
+.qpf-common-button {
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px black;
+  border-top: 1px solid #626262;
+  background-color: #3f3f3f;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(99% rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  color: #aeaeae;
+  line-height: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+.qpf-ui-button:hover,
+.qpf-common-button:hover {
+  background-color: #757575;
+  border-top: 1px solid #848484;
+  color: #232323;
+}
+.qpf-ui-button:active,
+.qpf-common-button:active {
+  background-color: #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(99% rgba(255, 255, 255, 0.1)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 99%);
+  border-bottom: 1px solid #2b2b2b;
+  box-shadow: inset 0px 1px 3px black;
+  border-top: none;
+  color: #aeaeae;
+}
+.qpf-ui-button.small,
+.qpf-common-button.small {
+  line-height: 20px;
+  height: 20px;
+  padding: 0px 10px;
+  font-size: 12px;
+}
+.qpf-ui-label {
+  color: white;
+}
+.qpf-ui-textfield {
+  background-color: #111111;
+  border-radius: 3px;
+  display: inline-block;
+  border-bottom: 1px solid #414141;
+  box-shadow: inset 0px 1px 3px black;
+}
+.qpf-ui-textfield input {
+  background: none;
+  border: none;
+  min-width: 10px;
+  color: #b1b1b1;
+  float: left;
+  margin: 0px;
+  line-height: 23px;
+  padding-left: 4px;
+  font-size: 14px;
+}
+.qpf-ui-textfield input:focus {
+  outline: none;
+}
+.qpf-ui-checkbox {
+  cursor: pointer;
+}
+.qpf-ui-checkbox input {
+  display: none;
+}
+.qpf-ui-checkbox span {
+  width: 19px;
+  height: 16px;
+  background-image: url(images/check_radio_sheet.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+  border-radius: 3px;
+}
+.qpf-ui-checkbox span.checked {
+  background-position: -19px 0px;
+}
+.qpf-ui-spinner {
+  background-color: #111111;
+  border-radius: 3px;
+  border-bottom: 1px solid #414141;
+  height: 26px;
+  box-shadow: inset 0px 1px 3px black;
+}
+.qpf-ui-spinner .qpf-left {
+  float: left;
+}
+.qpf-ui-spinner .qpf-left input {
+  background: none;
+  border: none;
+  min-width: 10px;
+  color: #717171;
+  float: left;
+  margin: 0px;
+  line-height: 23px;
+  padding-left: 4px;
+  font-size: 14px;
+}
+.qpf-ui-spinner .qpf-left input:focus {
+  outline: none;
+}
+.qpf-ui-spinner .qpf-right {
+  float: right;
+}
+.qpf-ui-spinner .qpf-right .qpf-increase,
+.qpf-ui-spinner .qpf-right .qpf-decrease {
+  width: 16px;
+  height: 11px;
+  margin-top: 1px;
+  padding: 0px;
+}
+.qpf-ui-spinner .qpf-right .qpf-increase {
+  border-radius: 0px 3px 0px 0px;
+  line-height: 9px;
+  font-size: 12px;
+}
+.qpf-ui-spinner .qpf-right .qpf-decrease {
+  border-radius: 0px 0px 3px 0px;
+  line-height: 9px;
+  font-size: 16px;
+}
+.qpf-ui-range {
+  height: 25px;
+  position: relative;
+}
+.qpf-ui-range .qpf-range-groove-box {
+  float: left;
+}
+.qpf-ui-range .qpf-range-groove-outer {
+  box-sizing: border-box;
+}
+.qpf-ui-range .qpf-range-groove {
+  background-color: #030303;
+  box-shadow: 0px 0px 1px black;
+  border-bottom: 1px solid #3D3D3D;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.qpf-ui-range .qpf-range-percentage {
+  background-color: #4EADD5;
+  margin-top: 1px;
+  margin-left: 1px;
+  border-radius: 2px;
+}
+.qpf-ui-range .qpf-range-slider {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  border-radius: 7px;
+  background-color: #505050;
+  border-top: 1px solid #5C5C5C;
+  box-shadow: 0px 0px 3px black;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.qpf-ui-range .qpf-range-slider .qpf-range-value {
+  background-color: #464648;
+  color: #939395;
+  padding: 2px 4px;
+  position: absolute;
+  font-size: 12px;
+  border-radius: 3px;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  -webkit-transition-delay: 1s;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  transition-delay: 1s;
+}
+.qpf-ui-range .qpf-range-slider:hover .qpf-range-value {
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.qpf-ui-range .qpf-range-slider-inner {
+  width: 8px;
+  height: 8px;
+  background-color: #1A1A1A;
+  border-radius: 4px;
+  margin: 2px 3px;
+  box-shadow: 0px 1px 1px #6B6A6A;
+}
+.qpf-ui-range .qpf-range-min {
+  position: absolute;
+  font-size: 12px;
+  color: #616161;
+}
+.qpf-ui-range .qpf-range-max {
+  position: absolute;
+  font-size: 12px;
+  color: #616161;
+}
+.qpf-ui-range.horizontal .qpf-range-groove-box {
+  width: 100%;
+}
+.qpf-ui-range.horizontal .qpf-range-groove-outer {
+  padding: 0px 7px;
+}
+.qpf-ui-range.horizontal .qpf-range-groove {
+  width: 100%;
+  height: 3px;
+  margin-top: 15px;
+}
+.qpf-ui-range.horizontal .qpf-range-percentage {
+  height: 2px;
+}
+.qpf-ui-range.horizontal .qpf-range-min {
+  left: 0px;
+  top: 2px;
+}
+.qpf-ui-range.horizontal .qpf-range-max {
+  right: 0px;
+  top: 2px;
+}
+.qpf-ui-range.horizontal .qpf-range-slider {
+  top: 10px;
+}
+.qpf-ui-range.horizontal .qpf-range-slider .qpf-range-value {
+  bottom: -1px;
+  left: 16px;
+}
+.qpf-ui-range.vertical {
+  height: 100%;
+}
+.qpf-ui-range.vertical .qpf-range-groove-box {
+  height: 100%;
+}
+.qpf-ui-range.vertical .qpf-range-groove-outer {
+  padding: 7px 0px;
+  height: 100%;
+}
+.qpf-ui-range.vertical .qpf-range-groove {
+  width: 3px;
+  height: 100%;
+  margin-left: 5px;
+}
+.qpf-ui-range.vertical .qpf-range-percentage {
+  height: 2px;
+}
+.qpf-ui-range.vertical .qpf-range-min {
+  left: 15px;
+  top: 0px;
+}
+.qpf-ui-range.vertical .qpf-range-max {
+  left: 15px;
+  bottom: 0px;
+}
+.qpf-ui-range.vertical .qpf-range-slider {
+  top: 10px;
+}
+.qpf-ui-range.vertical .qpf-range-slider .qpf-range-value {
+  bottom: -1px;
+  left: 16px;
+}
+.qpf-ui-combobox {
+  border-radius: 3px;
+  border: 1px solid #141414;
+  position: relative;
+}
+.qpf-ui-combobox .qpf-combobox-selected {
+  position: relative;
+}
+.qpf-ui-combobox .qpf-combobox-selected .qpf-left {
+  box-shadow: none;
+  text-align: left;
+  padding: 0px 10px;
+  border-radius: 3px 0px 0px 3px;
+  border-right: 1px solid #616161;
+  background-color: #3f3f3f;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(99% rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  color: #aeaeae;
+  border-top: 1px solid #626262;
+  overflow: hidden;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 21px;
+}
+.qpf-ui-combobox .qpf-combobox-selected .qpf-right {
+  float: right;
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 0px;
+  border-radius: 0px 3px 3px 0px;
+  box-shadow: none;
+  border-left: 1px solid #272727;
+}
+.qpf-ui-combobox .qpf-combobox-selected .qpf-right:active {
+  background-color: #757575;
+  border-top: 1px solid #848484;
+  color: #232323;
+}
+.qpf-ui-combobox .qpf-combobox-selected .qpf-right .qpf-icon {
+  background-size: 10px 10px;
+  width: 20px;
+  height: 30px;
+  background-position: 50% 50%;
+  background-image: url(images/arrow-down.svg);
+  background-repeat: no-repeat;
+}
+.qpf-ui-combobox ul.qpf-combobox-items {
+  margin: 0px;
+  padding: 0px;
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 32px;
+  z-index: 20000;
+  border: 1px solid #141414;
+  border-top: none;
+  margin-left: -1px;
+}
+.qpf-ui-combobox ul.qpf-combobox-items > li {
+  list-style: none;
+  border-bottom: 1px solid #292929;
+  border-top: 1px solid #565656;
+  background-color: #414141;
+  color: #8d8d8d;
+  line-height: 30px;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.qpf-ui-combobox ul.qpf-combobox-items > li:hover {
+  color: #acacac;
+  background-color: #4b4b4b;
+}
+.qpf-ui-combobox ul.qpf-combobox-items > li.selected {
+  border-left: 2px solid #4EADD5;
+  box-sizing: border-box;
+}
+.qpf-ui-combobox.active {
+  border-radius: 3px 3px 0px 0px;
+}
+.qpf-ui-combobox.active .qpf-combobox-selected .qpf-left {
+  border-bottom: 1px solid #292929;
+  border-radius: 3px 0px 0px 0px;
+}
+.qpf-ui-combobox.active .qpf-combobox-selected .qpf-right {
+  border-bottom: 1px solid #292929;
+  border-radius: 0px 3px 0px 0px;
+}
+.qpf-ui-combobox.active .qpf-combobox-selected .qpf-right .qpf-icon {
+  background-image: url(images/arrow-up.svg);
+}
+.qpf-ui-combobox.active ul.qpf-combobox-items {
+  display: block;
+}
+.qpf-ui-combobox.small .qpf-combobox-selected .qpf-left {
+  line-height: 20px;
+  height: 20px;
+  padding: 0px 10px;
+  font-size: 12px;
+}
+.qpf-ui-combobox.small .qpf-combobox-selected .qpf-right {
+  height: 20px;
+}
+.qpf-ui-combobox.small .qpf-combobox-selected .qpf-right .qpf-icon {
+  height: 20px;
+}
+.qpf-ui-combobox.small ul.qpf-combobox-items {
+  top: 22px;
+}
+.qpf-ui-combobox.small ul.qpf-combobox-items > li {
+  line-height: 20px;
+  padding: 0px 10px;
+  font-size: 12px;
+}
+.qpf-ui-combobox:focus {
+  outline: none;
+}
+.qpf-ui-tree ul {
+  margin: 0px;
+  padding: 0px;
+}
+.qpf-ui-tree ul li {
+  list-style: none;
+  line-height: 24px;
+}
+.qpf-ui-tree .qpf-tree-item-title {
+  cursor: pointer;
+}
+.qpf-ui-vector {
+  position: relative;
+}
+.qpf-ui-vector > .qpf-left {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  width: 12px;
+  cursor: pointer;
+}
+.qpf-ui-vector .qpf-vector-link {
+  border: 1px solid #5F5F5F;
+  border-right: none;
+  border-radius: 3px 0px 0px 3px;
+  height: 100%;
+  background-image: url(images/link.png);
+  background-position: 2px 50%;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+}
+.qpf-ui-vector > .qpf-right {
+  margin-left: 20px;
+}
+.qpf-ui-vector > .qpf-right .qpf-list {
+  margin: 0px;
+  padding: 0px;
+}
+.qpf-ui-vector > .qpf-right .qpf-list li {
+  list-style: none;
+  margin: 3px 0px;
+}
+.qpf-ui-vector.qpf-vector-constrain .qpf-vector-link {
+  border-color: #4EADD5;
+  background-image: url(images/link-active.png);
+}
+.qpf-ui-palette {
+  width: 350px;
+}
+.qpf-ui-palette .qpf-palette-adjuster > .qpf-left {
+  float: left;
+  margin-top: 10px;
+}
+.qpf-ui-palette .qpf-palette-adjuster > .qpf-right {
+  float: left;
+  width: 100px;
+  margin-left: 20px;
+}
+.qpf-ui-palette .qpf-palette-adjuster > .qpf-right .qpf-ui-spinner input {
+  width: 60px;
+}
+.qpf-ui-palette .qpf-palette-picksv {
+  position: relative;
+  float: left;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.qpf-ui-palette .qpf-palette-picksv .qpf-palette-saturation {
+  height: 100%;
+  background-color: none;
+  background-image: -webkit-gradient(linear, left top, left top, color-stop(0%, #ffffff), color-stop(100% rgba(204, 154, 129, 0)));
+  background-image: -webkit-linear-gradient(left, #ffffff 0%, rgba(204, 154, 129, 0) 100%);
+  background-image: -moz-linear-gradient(left, #ffffff 0%, rgba(204, 154, 129, 0) 100%);
+  background-image: -ms-linear-gradient(left, #ffffff 0%, rgba(204, 154, 129, 0) 100%);
+  background-image: -o-linear-gradient(left, #ffffff 0%, rgba(204, 154, 129, 0) 100%);
+  background-image: linear-gradient(left, #ffffff 0%, rgba(204, 154, 129, 0) 100%);
+}
+.qpf-ui-palette .qpf-palette-picksv .qpf-palette-value {
+  height: 100%;
+  background-color: none;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(204, 154, 129, 0)), color-stop(100% #000000));
+  background-image: -webkit-linear-gradient(top, rgba(204, 154, 129, 0) 0%, #000000 100%);
+  background-image: -moz-linear-gradient(top, rgba(204, 154, 129, 0) 0%, #000000 100%);
+  background-image: -ms-linear-gradient(top, rgba(204, 154, 129, 0) 0%, #000000 100%);
+  background-image: -o-linear-gradient(top, rgba(204, 154, 129, 0) 0%, #000000 100%);
+  background-image: linear-gradient(top, rgba(204, 154, 129, 0) 0%, #000000 100%);
+  box-shadow: inset 0px 0px 5px black;
+}
+.qpf-ui-palette .qpf-palette-picksv .qpf-palette-picker {
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  margin-left: -5px;
+  margin-top: -5px;
+  box-shadow: 0px 0px 3px black;
+}
+.qpf-ui-palette .qpf-palette-pickh {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  width: 20px;
+  height: 200px;
+  background: -webkit-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  background: -moz-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  background: linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  overflow: hidden;
+  box-shadow: inset 0px 0px 5px black;
+}
+.qpf-ui-palette .qpf-palette-pickh .qpf-palette-picker {
+  width: 16px;
+  height: 4px;
+  border-radius: 3px;
+  border: 2px solid #ffffff;
+  margin: -4px 0px;
+  box-shadow: 0px 0px 3px black;
+}
+.qpf-ui-palette .qpf-palette-picker {
+  position: absolute;
+}
+.qpf-ui-palette .qpf-ui-label {
+  font-size: 12px;
+  color: #666666;
+}
+.qpf-ui-palette .qpf-palette-hex > div {
+  float: left;
+}
+.qpf-ui-palette .qpf-palette-hex input {
+  width: 80px;
+}
+.qpf-ui-palette .qpf-palette-hex .qpf-ui-label {
+  margin: 5px;
+}
+.qpf-ui-palette .qpf-palette-alpha {
+  margin-top: 5px;
+}
+.qpf-ui-palette .qpf-palette-recent {
+  margin: 10px 0px;
+  padding: 0px;
+}
+.qpf-ui-palette .qpf-palette-recent li {
+  width: 30px;
+  height: 20px;
+  float: left;
+  list-style: none;
+  margin: 1px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  box-shadow: 0px 0px 2px black;
+}
+.qpf-ui-palette .qpf-palette-recent li:first-of-type {
+  border-radius: 5px 0px 0px 5px;
+}
+.qpf-ui-palette .qpf-palette-recent li:last-of-type {
+  border-radius: 0px 5px 5px 0px;
+}
+.qpf-ui-palette .qpf-palette-recent li:hover {
+  width: 34px;
+  height: 24px;
+  margin: -1px;
+}
+.qpf-ui-palette .qpf-palette-buttons > div {
+  float: right;
+  margin: 4px 6px;
+}
+.qpf-ui-panel {
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px black;
+  background-color: #323234;
+  position: relative;
+}
+.qpf-ui-panel > .qpf-panel-header {
+  background-color: #3f3f3f;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(99% rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 99%);
+  border-top: 1px solid #626262;
+  color: #919191;
+  line-height: 25px;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 1px 1px black;
+}
+.qpf-ui-panel > .qpf-panel-header > .qpf-panel-title {
+  margin-left: 10px;
+}
+.qpf-ui-panel > .qpf-panel-body {
+  padding: 10px;
+}
+.qpf-ui-panel > .qpf-panel-footer {
+  min-height: 5px;
+  border-radius: 0px 0px 5px 5px;
+}
+.qpf-ui-window {
+  position: absolute;
+}
+.qpf-ui-tab > .qpf-tab-header {
+  overflow: hidden;
+}
+.qpf-ui-tab > .qpf-tab-header > .qpf-tab-tabs {
+  margin: -1px -1px 0px -1px;
+  box-shadow: inset 0px 0px 1px black;
+  height: 28px;
+  padding: 3px 3px 1px 1px;
+}
+.qpf-ui-tab > .qpf-tab-header > .qpf-tab-tabs > li {
+  cursor: pointer;
+  list-style: none;
+  border-radius: 5px 5px 0px 0px;
+  border-top: 1px solid #525252;
+  background-color: #3f3f3f;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.05)), color-stop(99% rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
+  line-height: 27px;
+  float: left;
+  text-align: center;
+  border-bottom: 1px solid #222;
+  margin-right: 1px;
+  overflow: hidden;
+}
+.qpf-ui-tab > .qpf-tab-header > .qpf-tab-tabs > li.actived {
+  background-color: #323234;
+  border: 1px solid #1B1B1B;
+  border-bottom: none;
+  margin-top: -1px;
+  line-height: 29px;
+}
+.qpf-ui-tab > .qpf-tab-header > .qpf-tab-tabs > li a {
+  color: #919191;
+  margin: 0px 5px;
+}
+.qpf-ui-tab > .qpf-tab-body {
+  background-color: #323234;
+  border-radius: 0px 0px 5px 5px;
+  border: 1px solid #1B1B1B;
+  border-top: none;
+}
+.qpf-ui-tab > .qpf-tab-body > .qpf-tab-views > .qpf-ui-panel {
+  box-shadow: none;
+}
+.qpf-ui-tab > .qpf-tab-body > .qpf-tab-views > .qpf-ui-panel > .qpf-panel-header {
+  display: none;
+}
+.qpf-ui-tab > .qpf-tab-body > .qpf-tab-views > .qpf-ui-panel > .qpf-panel-footer {
+  display: none;
+}
+.qpf-ui-inline .qpf-children > div {
+  float: left;
+}
