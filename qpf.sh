@@ -1,6 +1,6 @@
 #!/bin/sh
 cd ../qpf/build
-node r.js -o config.plain.js
+node r.js -o config.js
 cp output/qpf.js ../../qtek-image/static/lib/qpf.js
 
 cp ../src/components/less/base.less ../../qtek-image/static/style/qpf/base.less

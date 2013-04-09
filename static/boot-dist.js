@@ -35,9 +35,9 @@
 
 		requirejs.config({
 			paths : {
-				async	: LIB_PATH + "async",
-				qpf		: LIB_PATH + "qpf",
-
+				async	: "lib/async",
+				qpf		: "lib/qpf",
+				qtek 	: "lib/qtek",
 				// fx resource
 				fxs : "fx",
 				shaders : "shaders"

@@ -12,7 +12,7 @@ define(function(require){
 		}
 	}, {
 		type : "ICONBUTTON",
-		css : "icon-button",
+		css : _.union("icon-button", Button.prototype.css),
 
 		template : '<div class="qpf-icon" data-bind="css:icon"></div>',
 	})

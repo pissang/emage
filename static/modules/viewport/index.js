@@ -3,62 +3,102 @@ define(function(require){
 	var Module = require("../module"),
 		xml = require("text!./viewport.xml"),
 		layers = require("../layers/index"),
-		Viewport = require("./viewport");
+		histogram = require('../histogram/index'),
+		Viewport = require("./viewport"),
+
+		qpf = require("qpf"),
+		ko = qpf.use("knockout")
 
 	var viewport = new Module({
 		name : "viewport",
 		xml : xml,
 
+		applyFilter : ko.observable(true),
+
 		onRender : onRender,
 		onResize : onResize,
 
-		texture : THREE.ImageUtils.loadTexture('../file_upload/4.jpg'),
+		texture : new THREE.Texture(),
 
 		resize : function(){
 			var img = viewport.texture.image;
 			var ratio = img.height/img.width;
-			if( viewport.mainComponent.parent ){
-				var maxWidth = viewport.mainComponent.parent.width();
-				var maxHeight = viewport.mainComponent.parent.height();
+
+			if( viewport.mainComponent && 
+				viewport.mainComponent.parent ){
+				
+				var main = viewport.mainComponent;
+				var maxWidth = main.parent.width();
+				var maxHeight = main.parent.height();
 				// resize
 				if( ratio < 1){
-					viewport.mainComponent.$el.css({
+					main.$el.css({
 						"margin-top" : (maxHeight - maxWidth*ratio)/2+"px",
 						"margin-left" : "0px"
 					} );
-					viewport.mainComponent.height( maxWidth*ratio );
-					viewport.mainComponent.width( maxWidth );
+					main.height( maxWidth*ratio );
+					main.width( maxWidth );
 				}else{
-					viewport.mainComponent.$el.css({
+					main.$el.css({
 						"margin-left" : (maxWidth - maxHeight/ratio)/2,
 						"margin-top" : "0px"
 					});
-					viewport.mainComponent.width( maxHeight/ratio );
-					viewport.mainComponent.height( maxHeight );
+					main.width( maxHeight/ratio );
+					main.height( maxHeight );
+				}
+			}
+		},
+
+		setImage : function(img){
+			var self = this;
+			if( typeof(img) === "string"){
+				var image = new Image();
+				image.onload = function(){
+					self.texture.needsUpdate = true;
+					self.resize();
+				}
+				image.src = img;
+				this.texture.image = image;
+			}else{
+				this.texture.image = img;
+				if( img.width ){
+					self.texture.needsUpdate = true;
+					self.resize();
+				}else{
+					img.onload = function(){
+						self.texture.needsUpdate = true;
+						self.resize();
+					}
 				}
 			}
 		}
 	})
-	viewport.texture.image.onload = function(){
-		viewport.texture.needsUpdate = true;
-		viewport.resize();
-	}
+
 	viewport.on("start", function(){
-		viewport.resize();
+		viewport.setImage('../file_upload/1.jpg');
 	})
 
-	var interval = 0,
+	var renderInterval = 0,
+		histogramInterval = 0,
 		renderer;
 
 	var manager = layers.manager;
 	manager.texture = viewport.texture;
 
+	ko.computed(function(){
+		manager.enable( viewport.applyFilter() );
+		viewport.applyFilter( manager.enable() );
+	})
+
 	function onRender(){
 		renderer = this.renderer;
-		if( interval ){
-			clearInterval(interval);
+		if( renderInterval ){
+			clearInterval(renderInterval);
 		}
-		setInterval(render, 100);
+		if( histogramInterval ){
+			clearInterval( histogramInterval);
+		}
+		renderInterval = setInterval(render, 100);
 	}
 	function onResize(){
 		renderer && renderer.setSize(this.width(), this.height());
@@ -67,6 +107,7 @@ define(function(require){
 	function render(){
 		viewport.trigger("beforerender");
 		manager.render( renderer );
+		histogram.update( renderer.domElement );
 	}
 
 	return viewport;

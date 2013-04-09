@@ -23,6 +23,7 @@ return{
 	outputRT : new THREE.WebGLRenderTarget(1024, 1024, pars),
 
 	texture : null,
+	enable : ko.observable(true),
 
 	outputPass : new Pass({
 		fragmentShader : [
@@ -110,30 +111,31 @@ return{
 	render : function(renderer){
 		var firstPass = true,
 			self = this;
+		if( this.enable && this.enable() ){
+			_.each(this.fxs(), function(fx){
+				if( fx instanceof FX){
+					fx.eachPass(function(pass){
+						if(firstPass){
+							pass.setInputPin("texture", self.texture);
+							firstPass = false;
+						}else{
+							pass.setInputPin("texture", self.inputRT);
+						}
+						pass.setOutputPin(self.outputRT);
+						pass.render(renderer);
 
-		_.each(this.fxs(), function(fx){
-			if( fx instanceof FX){
-				fx.eachPass(function(pass){
-					if(firstPass){
-						pass.setInputPin("texture", self.texture);
-						firstPass = false;
-					}else{
-						pass.setInputPin("texture", self.inputRT);
+						self._swap();
+					})	
+				}else{
+					// self defined
+					var outputRT = fx.render( renderer, firstPass ? self.texture : self.inputRT, self.outputRT );
+					if( outputRT === self.outputRT){
+						self._swap();
 					}
-					pass.setOutputPin(self.outputRT);
-					pass.render(renderer);
-
-					self._swap();
-				})	
-			}else{
-				// self defined
-				var outputRT = fx.render( renderer, firstPass ? self.texture : self.inputRT, self.outputRT );
-				if( outputRT === self.outputRT){
-					self._swap();
+					firstPass = false;
 				}
-				firstPass = false;
-			}
-		})
+			})
+		}
 		// final pass
 		this.outputPass.setInputPin('texture', firstPass ? self.texture : self.inputRT);
 		this.outputPass.render( renderer );

@@ -6,9 +6,7 @@
 	// CONFIG
 	//=========================
 
-	this["LIB_PATH"] 	= "lib/";
-
-	$LAB.setGlobalDefaults({BasePath:LIB_PATH});
+	$LAB.setGlobalDefaults({BasePath:'lib/'});
 	//=========================
 	// Load Library
 	//=========================
@@ -40,16 +38,17 @@
 
 		requirejs.config({
 			paths : {
-				async	: LIB_PATH + "async",
-				qpf		: LIB_PATH + "qpf",
-
+				async	: "lib/async",
+				qpf		: "lib/qpf",
+				qtek 	: "lib/qtek",
 				// fx resource
 				fxs : "fx",
 				shaders : "shaders"
 			},
 			shim : {
 				"app" : [// 公用的组件
-						"modules/common/list.js", 
+						"modules/common/toggle",
+						"modules/common/list", 
 						"modules/common/iconbutton", 
 						"modules/common/modal", 
 						"modules/common/region"]

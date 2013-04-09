@@ -6,36 +6,14 @@ define(function(require){
 		xml = require("text!./navigator.xml"),
 		NavLink = require("./navlink"),
 
-		List = require("../common/list"),
-		ImageItem = require("./imageitem"),
-
 		viewport = require("../viewport/index"),
 		router = require("../router");
 
 	var nav = new Module({
 		name : "navigator",
-		xml : xml,
-
-		images : ko.observableArray(),
-		ImageItem : ImageItem
+		xml : xml
 	});
 	
-	$.get("../file_upload/list.json", function(data){
-		_.each( data, function(item){
-			item.image = item.url;
-			item.title = item.name;
-			delete item.url;
-			delete item.name;
-		})
-		nav.images( data );
-	})
-
-	nav.$el.delegate(".qpf-image img", "click", function(){
-		viewport.texture.generateMipmaps = true;
-		viewport.texture.image = this;
-		viewport.texture.needsUpdate = true;
-		viewport.resize();
-	})
 
 	nav.$el.delegate(".qpf-ui-navlink", "click", function(){
 		var $this= $(this),
@@ -53,11 +31,8 @@ define(function(require){
 		$this.addClass("active");
 	})
 	var video;
-	function switchToCloud(){
-		$(".image-list").show();
-	}
+	
 	function switchToCamera(){
-		$(".image-list").hide();
 		var tex = viewport.texture;
 
 		video = document.createElement('video');

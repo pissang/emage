@@ -78,7 +78,7 @@ define({
 		name : "lookups/softwarming",
 		description : ""
 	}, {
-		title : "Teal Orange Plus Contrast",
+		title : "Teal Orange Plus...",
 		name : "lookups/tealorangepluscontrast",
 		description : ""
 	}, {
@@ -112,7 +112,7 @@ define({
 		title : "Sobel Edge Detection",
 		name : "sobel"
 	}, {
-		title : "Threshold Edge Detection",
+		title : "Threshold Edge Detect",
 		name : "thresholdedge"
 	}, {
 		title : "Canny Edge Detection",

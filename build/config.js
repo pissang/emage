@@ -5,6 +5,7 @@
 	paths : {
 		async	: "lib/async",
 		qpf		: "lib/qpf"
+		qtek 	: "lib/qtek",
 	},
 	shim : {
 		"app" : ["modules/common/list.js", 

@@ -9,7 +9,8 @@ define(function(require){
 
 		return {
 			title : ko.observable(""),
-			image : ko.observable(""),
+			thumb : ko.observable(""),
+			url : ko.observable(),
 		}
 	}, {
 		type : "IMAGEITEM",
@@ -22,7 +23,7 @@ define(function(require){
 			})
 		},
 
-		template : '<div class="qpf-image" data-bind="qpf_image:image"></div>'
+		template : '<div class="qpf-image" data-bind="qpf_image:thumb"></div>'
 	})
 
 
