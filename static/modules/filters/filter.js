@@ -9,7 +9,7 @@ define(function(require){
 
 		var viewModel = {
 			title : ko.observable(""),
-			icon : ko.observable(""),
+			preview: ko.observable(""),
 			description : ko.observable(""),
 
 			// filter name will be used in finding the fx file
@@ -20,9 +20,9 @@ define(function(require){
 			}
 		}
 
-		viewModel._iconSrc = ko.computed(function(){
-			if( viewModel.icon() ){
-				return "../../fx/icons/" + viewModel.icon()
+		viewModel._previewSrc = ko.computed(function(){
+			if( viewModel.preview() ){
+				return "fx/preview/" + viewModel.preview()
 			}
 		})
 		return viewModel;

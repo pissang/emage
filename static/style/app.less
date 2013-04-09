@@ -344,7 +344,7 @@ body{
 			.linear-gradient-top(#3f3f3f, rgba(255,255,255,0.05), 0%, rgba(255,255,255,0.0), 99%);
 			cursor: pointer;
 		}
-		.qpf-filter-icon{
+		.qpf-filter-preview{
 			float:left;
 			width:40px;
 			height:40px;
@@ -359,6 +359,7 @@ body{
 		}
 		.qpf-filter-title{
 			float: left;
+			margin-left: 10px;
 			h5{
 				color:#BEBEBE;
 				margin:0px;
@@ -376,6 +377,15 @@ body{
 				color:#8A8989;
 				padding: 10px;
 				margin:0px;
+			}
+		}
+
+		&:hover{
+			.qpf-filter-header{
+				background-color: #354C75;
+			}
+			h5{
+				color:white;
 			}
 		}
 	}

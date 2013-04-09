@@ -42,7 +42,7 @@
 				qpf		: "lib/qpf",
 				qtek 	: "lib/qtek",
 				// fx resource
-				fxs : "fx",
+				fx : "fx",
 				shaders : "shaders"
 			}
 		})

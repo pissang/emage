@@ -29,6 +29,19 @@ define(function(require){
 			}) )	
 		}
 	})
-	
+
+	// preload 
+	var cursor = 0;
+	function preload(){
+		var item = dataSource.filters[cursor];
+		if( item ){
+			layers.manager.load( item.name, function(){
+				cursor++;
+				preload();
+			} );
+		}
+	}
+	preload();
+
 	return filters;
 })

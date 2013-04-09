@@ -22,7 +22,7 @@ define(function(require){
 			resizeCanvas : null,
 			resizeContext : null,
 
-			size : 64,
+			size : 256,
 			sample : 4
 		}
 	}, {

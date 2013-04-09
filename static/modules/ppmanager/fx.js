@@ -4,8 +4,55 @@ var qpf = require("qpf"),
 	clazz = qpf.use("core/clazz"),
 	ko = qpf.use("knockout"),
 	Mapping = qpf.use("ko.mapping"),
+	async = require('async'),
 
 	Pass = require("./pass");
+
+var preloads = ['fx/lookups/images/amatorka.png',
+				'fx/lookups/images/horrorblue.png',
+				'fx/lookups/images/bleachbypass.png',
+				'fx/lookups/images/latesunset.png',
+				'fx/lookups/images/candlelight.png',
+				'fx/lookups/images/lookup.png',
+				'fx/lookups/images/crispwarm.png',
+				'fx/lookups/images/missetikate.png',
+				'fx/lookups/images/crispwinter.png',
+				'fx/lookups/images/moonlight.png',
+				'fx/lookups/images/dropblues.png',
+				'fx/lookups/images/nightfromday.png',
+				'fx/lookups/images/edgyamber.png',
+				'fx/lookups/images/soft_elegance_1.png',
+				'fx/lookups/images/fallcolors.png',
+				'fx/lookups/images/soft_elegance_2.png',
+				'fx/lookups/images/filmstock_50.png',
+				'fx/lookups/images/softwarming.png',
+				'fx/lookups/images/foggynight.png',
+				'fx/lookups/images/tealorangepluscontrast.png',
+				'fx/lookups/images/futuristicbleak.png',
+				'fx/lookups/images/tensiongreen.png'];
+
+var textureCaches = {};
+
+// preload the lookup images
+async.eachSeries( preloads, function(src, next){
+	if( textureCaches[src] ){
+		next();
+	}else{
+		var img = new Image;
+		img.onload = function(){
+			var texture = new THREE.Texture();
+			texture.image = img;
+			texture.magFilter = THREE.NearestFilter;
+			texture.minFilter = THREE.NearestFilter;
+			texture.flipY = false;
+			texture.needsUpdate = true;
+			img.onload = null;
+			textureCaches[src] = texture;
+			next();
+		}
+		img.src = src;
+	}
+})
 
 var FX = clazz.derive(function(){
 	return {
@@ -120,12 +167,16 @@ var processors = {
 	},
 	texture : function(src){
 		// TODO : Should be relative to the fx path
-
-		var texture = THREE.ImageUtils.loadTexture("fx/"+src);
-		texture.magFilter = THREE.NearestFilter;
-		texture.minFilter = THREE.NearestFilter;
-		texture.flipY = false;
-		texture.needsUpdate = true;
+		src = "fx/"+src;
+		var texture = textureCaches[src];
+		if( !texture ){
+			var texture = THREE.ImageUtils.loadTexture(src);
+			texture.magFilter = THREE.NearestFilter;
+			texture.minFilter = THREE.NearestFilter;
+			texture.flipY = false;
+			texture.needsUpdate = true;
+			textureCaches[src] = texture;
+		}
 		return texture;
 	}
 }

@@ -12,6 +12,9 @@ var pars = {
 	magFilter : THREE.LinearFilter,
 	format : THREE.RGBFormat
 }
+
+var cache = {};
+
 var Manager = clazz.derive(function(){
 return{
 
@@ -75,12 +78,28 @@ return{
 
 	add : function(name, callback){
 		var self = this;
-		require(["fxs/" + name], function(config){
-			// self defined fx constructor
+		this.load( name, function( config ){
 			if( typeof(config) === "function"){
 				var fx = new config();
 				self.fxs.push( fx );
-				callback && callback(fx);
+				callback && callback( fx );
+			}else{
+				var fx = self.buildFx( config );
+			}
+			callback && callback( fx );
+		})
+	},
+
+	load : function( name, callback ){
+		if( cache[name] ){
+			callback && callback( cache[name] );
+			return;
+		}
+		var self = this;
+		require(["fx/" + name], function(config){
+			// self defined fx constructor
+			if( typeof(config) === "function"){
+				callback && callback( config );
 			}
 			else{
 				var passes = config.passes;
@@ -92,8 +111,9 @@ return{
 							singlePass.shaderString = shaderString;
 							remaind--;
 							if( remaind == 0){
-								var fx = self.buildFx( config );
-								callback && callback( fx );
+								// TODO : deep clone config?
+								cache[name] = config;
+								callback && callback( config );
 							}
 						})
 					}
