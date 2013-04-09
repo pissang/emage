@@ -21,7 +21,7 @@ define(function(require){
 			fragmentShader : lookup,
 			inputPin : {
 				texture : null,
-				lookup : loadLookUp("fx/lookups/lookup_soft_elegance_1.png")
+				lookup : loadLookUp("fx/lookups/images/soft_elegance_1.png")
 			}
 		});
 		this._blurHPass = new Pass({
@@ -65,7 +65,7 @@ define(function(require){
 			fragmentShader : lookup,
 			inputPin : {
 				texture : null,
-				lookup : loadLookUp("fx/lookups/lookup_soft_elegance_2.png")
+				lookup : loadLookUp("fx/lookups/images/soft_elegance_2.png")
 			}
 		})
 

@@ -1,6 +1,6 @@
 <panel title="Filters" id="Filters">
 	<container>
-		<textfield class="qpf-fitlers-search" placeholder="search"></textfield>
+		<textfield text="@binding[seachKeyword]" class="qpf-fitlers-search" placeholder="search"></textfield>
 	</container>
 	<list dataSource="@binding[filters]" itemView="@binding[FilterView]"/>
 </panel>

@@ -755,14 +755,16 @@ return{
 	}
 }
 });
-define('core/clazz',['./mixin/derive',
-		'./mixin/event'], function(Derive, Event){
+define('core/clazz',['require','./mixin/derive','./mixin/event'],function(require){
 
-var Clazz = new Function();
-_.extend(Clazz, Derive);
-_.extend(Clazz.prototype, Event);
+	var deriveMixin = require("./mixin/derive"),
+		eventMixin = require("./mixin/event")
 
-return Clazz;
+	var Clazz = new Function();
+	_.extend(Clazz, deriveMixin);
+	_.extend(Clazz.prototype, eventMixin);
+
+	return Clazz;
 });
 // Knockout JavaScript library v2.2.1
 // (c) Steven Sanderson - http://knockoutjs.com/
@@ -4770,16 +4772,14 @@ ko.bindingHandlers["qpf_view"] = {
 $.fn.qpf = function( op, viewModel ){
 	op = op || "get";
 	if( op === "get"){
-		if( op === "get"){
-            var result = [];
-            this.each(function(){
-                var item = Base.getByDom(this);
-                if( item ){
-                    result.push(item);
-                }
-            })
-            return result;
-        }
+		var result = [];
+		this.each(function(){
+			var item = Base.getByDom(this);
+			if( item ){
+				result.push(item);
+			}
+		})
+		return result;
 	}else if( op === "init"){
 		this.each(function(){
 			ko.applyBindings(viewModel, this);
@@ -8375,9 +8375,9 @@ var Range = Meta.derive(function(){
 			max = this.max(),
 			value = this.value(),
 			percentage = ( value - min ) / ( max - min ),
-
+		
 			size = (this._boxSize-this._sliderSize)*percentage;
-
+		
 		if( this._boxSize > 0 ){
 			this._setOffset(size);
 		}else{	//incase the element is still not in the document

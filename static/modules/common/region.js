@@ -102,7 +102,7 @@ define(function(require){
 						if( $el ){
 							self.$el.append( $el );
 						}
-
+						module.mainComponent.parent = self;
 						// module.__enable__ = true;
 						module.enable( next )
 						module.setContext(context);

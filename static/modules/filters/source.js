@@ -8,14 +8,82 @@ define({
 		name : "sepia",
 		description : ""
 	},
-	// Instgram
+	// Color Adjustment
 	{
 		title : "Miss Etikate",
-		name : "missetikate",
+		name : "lookups/missetikate",
 		description : ""
 	}, {
 		title : "Amatorka",
-		name : "amatorka",
+		name : "lookups/amatorka",
+		description : ""
+	}, {
+		title : "Bleach Bypass",
+		name : "lookups/bleachbypass",
+		description : ""
+	}, {
+		title : "Candle Light",
+		name : "lookups/candlelight",
+		description : ""
+	}, {
+		title : "Crisp Warm",
+		name : "lookups/crispwarm",
+		description : ""
+	}, {
+		title : "Crisp Winter",
+		name : "lookups/crispwinter",
+		description : ""
+	}, {
+		title : "Drop Blues",
+		name : "lookups/dropblues",
+		description : ""
+	}, {
+		title : "Edgy Amber",
+		name : "lookups/edgyamber",
+		description : ""
+	}, {
+		title : "Fall Colors",
+		name : "lookups/fallcolors",
+		description : ""
+	}, {
+		title : "Film Stock 50",
+		name : "lookups/filmstock_50",
+		description : ""
+	}, {
+		title : "Foggy Night",
+		name : "lookups/foggynight",
+		description : ""
+	}, {
+		title : "Futuristic Bleak",
+		name : "lookups/futuristicbleak",
+		description : ""
+	}, {
+		title : "Horror Blue",
+		name : "lookups/horrorblue",
+		description : ""
+	}, {
+		title : "Late Sunset",
+		name : "lookups/latesunset",
+		description : ""
+	}, {
+		title : "Moonlight",
+		name : "lookups/moonlight",
+		description : ""
+	}, {
+		title : "Night From Day",
+		name : "lookups/nightfromday",
+		description : ""
+	}, {
+		title : "Soft Warming",
+		name : "lookups/softwarming",
+		description : ""
+	}, {
+		title : "Teal Orange Plus Contrast",
+		name : "lookups/tealorangepluscontrast",
+		description : ""
+	}, {
+		title : "Tension Green",
+		name : "lookups/tensiongreen",
 		description : ""
 	}, {
 		title : "Grayscale",

@@ -34,11 +34,12 @@ define(function(require){
 		viewport.texture.generateMipmaps = true;
 		viewport.texture.image = this;
 		viewport.texture.needsUpdate = true;
+		viewport.resize();
 	})
 
 	nav.$el.delegate(".qpf-ui-navlink", "click", function(){
 		var $this= $(this),
-			navlink = $this.qpf("get");
+			navlink = $this.qpf("get")[0];
 		if( navlink ){
 			switch(navlink.icon()){
 				case "camera":
