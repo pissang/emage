@@ -10,6 +10,10 @@ define(function(require){
 
 		Event 		= qpf.use("core/mixin/event");
         
+    //dependency
+    require('modules/common/toggle');
+    require('modules/common/iconbutton');
+
 	function start(){
 		var ko = qpf.use("knockout"),
 			XMLParser = qpf.use("core/xmlparser");

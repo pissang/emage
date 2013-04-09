@@ -1,1 +1,0 @@
-define(["require","qpf"],function(e){var t=e("qpf"),n=t.use("knockout"),r=t.use("components/container/container"),i=r.derive(function(){},{type:"CONFIGITEM",css:"configitem"});return r.provideBinding("configitem",i),i});

@@ -8,12 +8,12 @@
 		qtek 	: "lib/qtek"
 	},
 	shim : {
-		"app" : [
-				"modules/common/toggle",
-				"modules/common/list", 
-				"modules/common/iconbutton", 
-				"modules/common/modal", 
-				"modules/common/region"]
+		"app" : ["modules/filters/index",
+				"modules/histogram/index",
+				"modules/imagelist/index",
+				"modules/layers/index",
+				"modules/navigator/index",
+				"modules/viewport/index"]
 	},
 	modules : [{
 		name : "app"

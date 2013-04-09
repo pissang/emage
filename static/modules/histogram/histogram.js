@@ -145,7 +145,7 @@ define(function(require){
 			var max = Math.max.apply( Math, arr);
 			var result = [];
 			for(var i = 0; i < arr.length; i++){
-				result.push( arr[i]/max );
+				result.push( (max == 0 || isNaN(max) ) ? 0 : arr[i]/max );
 			}
 			return result;
 		},

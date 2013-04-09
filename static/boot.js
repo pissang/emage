@@ -44,14 +44,6 @@
 				// fx resource
 				fxs : "fx",
 				shaders : "shaders"
-			},
-			shim : {
-				"app" : [// 公用的组件
-						"modules/common/toggle",
-						"modules/common/list", 
-						"modules/common/iconbutton", 
-						"modules/common/modal", 
-						"modules/common/region"]
 			}
 		})
 	}
