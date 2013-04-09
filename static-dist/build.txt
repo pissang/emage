@@ -6,6 +6,7 @@ style/animate.css
 app.js
 ----------------
 lib/qpf.js
+modules/common/toggle.js
 modules/common/listitem.js
 modules/common/list.js
 modules/common/iconbutton.js
