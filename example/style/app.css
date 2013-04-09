@@ -367,12 +367,12 @@ body {
   background-image: linear-gradient(top, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 99%);
   cursor: pointer;
 }
-#Filters .qpf-ui-filter .qpf-filter-icon {
+#Filters .qpf-ui-filter .qpf-filter-preview {
   float: left;
   width: 40px;
   height: 40px;
 }
-#Filters .qpf-ui-filter .qpf-filter-icon img {
+#Filters .qpf-ui-filter .qpf-filter-preview img {
   width: 30px;
   height: 30px;
   background-image: url(imgs/picture.svg);
@@ -381,6 +381,7 @@ body {
 }
 #Filters .qpf-ui-filter .qpf-filter-title {
   float: left;
+  margin-left: 10px;
 }
 #Filters .qpf-ui-filter .qpf-filter-title h5 {
   color: #BEBEBE;
@@ -397,6 +398,12 @@ body {
   color: #8A8989;
   padding: 10px;
   margin: 0px;
+}
+#Filters .qpf-ui-filter:hover .qpf-filter-header {
+  background-color: #354C75;
+}
+#Filters .qpf-ui-filter:hover h5 {
+  color: white;
 }
 #Filters .qpf-fitlers-search {
   display: block;

@@ -15,6 +15,7 @@ text!modules/layers/layer.html
 modules/layers/layer.js
 modules/common/listitem.js
 modules/common/list.js
+lib/async.js
 modules/ppmanager/pass.js
 modules/ppmanager/fx.js
 modules/ppmanager/manager.js
