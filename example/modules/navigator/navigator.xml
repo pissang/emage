@@ -2,5 +2,4 @@
 	<navlink title="Cloud" icon="cloud" class="active" href="cloud"></navlink>
 	<navlink title="Camera" icon="camera" href="camera"></navlink>
 	<navlink title="Local" icon="local" href="local"></navlink>
-	<list dataSource="@binding[images]" class="image-list" itemView="@binding[ImageItem]"></list>
 </panel>

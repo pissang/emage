@@ -1,6 +1,0 @@
-<panel height="100%" title="@binding[title]" id="@binding[id]">
-	<inline class="toolbar">
-		<iconbutton icon="add" text="" onclick="@binding[add]"></iconbutton>
-	</inline>
-	<list dataSource="@binding[list]"></list>
-</panel>
