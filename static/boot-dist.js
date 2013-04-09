@@ -44,7 +44,8 @@
 			},
 			shim : {
 				"app" : [// 公用的组件
-						"modules/common/list.js", 
+						"modules/common/toggle",
+						"modules/common/list", 
 						"modules/common/iconbutton", 
 						"modules/common/modal", 
 						"modules/common/region"]
