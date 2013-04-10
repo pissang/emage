@@ -27,8 +27,16 @@ define( function(require){
 		imageList.images( listData.slice(0, pageLength) );
 	})
 
+	var img;
 	imageList.$el.delegate(".qpf-ui-image-item", "click", function(){
-		viewport.setImage( $(this).qpf('get')[0].url() );
+		var thumb = $(this).find("img")[0];
+		viewport.setImage( thumb );
+		
+		img = new Image;
+		img.onload = function(){
+			viewport.setImage( img );
+		}
+		img.src = $(this).qpf('get')[0].url();
 	})
 	.delegate('.button-left', 'click', prevPage)
 	.delegate('.button-right', 'click', nextPage);

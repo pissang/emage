@@ -73,9 +73,14 @@ define(function(require){
 			}
 		}
 	})
-
+	
 	viewport.on("start", function(){
-		viewport.setImage('../file_upload/1.jpg');
+		viewport.setImage('../file_upload/thumb/1.jpg');
+		var img = new Image;
+		img.onload = function(){
+			viewport.setImage( img );
+		}
+		img.src = '../file_upload/1.jpg';
 	})
 
 	var renderInterval = 0,
