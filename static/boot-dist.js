@@ -1,45 +1,45 @@
 /**
  * boot the web app
  */
-(function(){	
-	//=========================
-	// CONFIG
-	//=========================
+(function(){    
+    //=========================
+    // CONFIG
+    //=========================
 
-	this["LIB_PATH"] 	= "lib/";
+    this["LIB_PATH"]    = "lib/";
 
-	$LAB.setGlobalDefaults({BasePath:LIB_PATH});
-	//=========================
-	// Load Library
-	//=========================
-	$LAB.script("lib.js")
-		.wait(boot);
+    $LAB.setGlobalDefaults({BasePath:LIB_PATH});
+    //=========================
+    // Load Library
+    //=========================
+    $LAB.script("lib.js")
+        .wait(boot);
 
-	//========================
-	// Load Main Module
-	//========================
-	function boot(){
+    //========================
+    // Load Main Module
+    //========================
+    function boot(){
 
-		config();
-		
-		// ZipClipboard
-		ZeroClipboard.setMoviePath("resource/ZeroClipboard.swf");
+        config();
+        
+        // ZipClipboard
+        ZeroClipboard.setMoviePath("resource/ZeroClipboard.swf");
 
-		require(["app"], function(app){
-			app.start();
-		})
-	}
+        require(["app"], function(app){
+            app.start();
+        })
+    }
 
 
-	function config(){
+    function config(){
 
-		requirejs.config({
-			paths : {
-				// fx resource
-				fxs : "fx",
-				shaders : "shaders"
-			},
-		})
-	}
+        requirejs.config({
+            paths : {
+                // fx resource
+                fxs : "fx",
+                shaders : "shaders"
+            },
+        })
+    }
 
 }).call( this )

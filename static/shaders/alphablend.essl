@@ -7,8 +7,8 @@ uniform float percent;
 
 void main()
 {
-	vec4 tex = texture2D( texture, vUv);
-	vec4 tex2 = texture2D( overlay, vUv);
+    vec4 tex = texture2D( texture, vUv);
+    vec4 tex2 = texture2D( overlay, vUv);
 
-	gl_FragColor = vec4(mix(tex.rgb, tex2.rgb, tex2.a*percent), tex.a);
+    gl_FragColor = vec4(mix(tex.rgb, tex2.rgb, tex2.a*percent), tex.a);
 }

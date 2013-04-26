@@ -1,35 +1,35 @@
 // default list item component
 define(function(require){
 
-	var qpf = require("qpf"),
-		Meta = qpf.use("components/meta/meta"),
-		ko = qpf.use("knockout");
+    var qpf = require("qpf");
+    var Meta = qpf.use("components/meta/meta");
+    var ko = qpf.use("knockout");
 
-	var Toggle = Meta.derive(function(){
+    var Toggle = Meta.derive(function(){
 
-		return {
-			enable : ko.observable(false)
-		}
-	}, {
-		type : "TOGGLE",
-		
-		css : "toggle",
+        return {
+            enable : ko.observable(false)
+        }
+    }, {
+        type : "TOGGLE",
+        
+        css : "toggle",
 
-		initialize : function(){
-			this.$el.mousedown(function(e){
-				e.preventDefault();
-			})
+        initialize : function(){
+            this.$el.mousedown(function(e){
+                e.preventDefault();
+            })
 
-			var self = this;
-			this.$el.click(function(){
-				self.enable( ! self.enable() );
-			})
-		},
+            var self = this;
+            this.$el.click(function(){
+                self.enable( ! self.enable() );
+            })
+        },
 
-		template : '<input type="checkbox" value="None" name="check" data-bind="checked:enable" />\
-	 				 <label></label>'
-	})
+        template : '<input type="checkbox" value="None" name="check" data-bind="checked:enable" />\
+                     <label></label>'
+    })
 
-	Meta.provideBinding("toggle", Toggle);
-	return Toggle;
+    Meta.provideBinding("toggle", Toggle);
+    return Toggle;
 })

@@ -1,23 +1,23 @@
 define({
 
-	name : "Gamma",
-	description : "Gamma",
-	preview : "",
+    name : "Gamma",
+    description : "Gamma",
+    preview : "",
 
-	passes : [{
-		name : "Main",
-		shader : "gamma.essl",
+    passes : [{
+        name : "Main",
+        shader : "gamma.essl",
 
-		uniforms : {
-			gamma : {
-				name : "Gamma",
-				type : "f",
-				ui : "range",
-				min : 0,
-				max : 3,
-				precision : 2,
-				value : 1
-			}
-		}
-	}]
+        uniforms : {
+            gamma : {
+                name : "Gamma",
+                type : "f",
+                ui : "range",
+                min : 0,
+                max : 3,
+                precision : 2,
+                value : 1
+            }
+        }
+    }]
 })

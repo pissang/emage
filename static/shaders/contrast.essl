@@ -5,7 +5,7 @@ uniform float contrast;
 
 void main()
 {
-	vec4 tex = texture2D( texture, vUv);
+    vec4 tex = texture2D( texture, vUv);
 
-	gl_FragColor = vec4(((tex.rgb - vec3(0.5))*contrast + vec3(0.5)), tex.a);
+    gl_FragColor = vec4(((tex.rgb - vec3(0.5))*contrast + vec3(0.5)), tex.a);
 }

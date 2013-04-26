@@ -1,19 +1,19 @@
 define(function(require){
-	
-	var qpf = require("qpf"),
-		ko = qpf.use("knockout"),
-		Container = qpf.use('components/container/container');
+    
+    var qpf = require("qpf");
+    var ko = qpf.use("knockout");
+    var Container = qpf.use('components/container/container');
 
-	var ConfigItem = Container.derive(function(){
+    var ConfigItem = Container.derive(function(){
 
-	}, {
-		type : 'CONFIGITEM',
+    }, {
+        type : 'CONFIGITEM',
 
-		css : 'configitem'
+        css : 'configitem'
 
-	});
+    });
 
-	Container.provideBinding("configitem", ConfigItem);
+    Container.provideBinding("configitem", ConfigItem);
 
-	return ConfigItem;
+    return ConfigItem;
 })

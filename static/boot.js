@@ -1,51 +1,53 @@
 /**
  * boot the web app
  */
-(function(){	
-	//=========================
-	// CONFIG
-	//=========================
+(function(){    
+    //=========================
+    // CONFIG
+    //=========================
 
-	$LAB.setGlobalDefaults({BasePath:'lib/'});
-	//=========================
-	// Load Library
-	//=========================
-	$LAB.script("require.js")
-		.script("jquery.js")
-		.script("director.js")
-		.script("underscore.js")
-		.script('ZeroClipboard.js')
-		.script("three.js")
-		.wait(boot);
+    $LAB.setGlobalDefaults({BasePath:'lib/'});
+    //=========================
+    // Load Library
+    //=========================
+    $LAB.script("require.js")
+        .script("jquery.js")
+        .script("director.js")
+        .script("underscore.js")
+        .script('ZeroClipboard.js')
+        .script("three.js")
+        .wait(boot);
 
-	//========================
-	// Load Main Module
-	//========================
-	function boot(){
+    //========================
+    // Load Main Module
+    //========================
+    function boot(){
 
-		config();
-		
-		// ZipClipboard
-		ZeroClipboard.setMoviePath("resource/ZeroClipboard.swf");
+        config();
+        
+        // ZipClipboard
+        ZeroClipboard.setMoviePath("resource/ZeroClipboard.swf");
 
-		require(["app"], function(app){
-			app.start();
-		})
-	}
+        require(["app"], function(app){
+            app.start();
+        })
+    }
 
 
-	function config(){
+    function config(){
 
-		requirejs.config({
-			paths : {
-				async	: "lib/async",
-				qpf		: "lib/qpf",
-				qtek 	: "lib/qtek",
-				// fx resource
-				fx : "fx",
-				shaders : "shaders"
-			}
-		})
-	}
+        requirejs.config({
+            paths : {
+                async   : "lib/async",
+                qpf     : "lib/qpf",
+                qtek    : "lib/qtek",
+                knockout : "lib/knockout",
+                koMapping : "lib/ko.mapping",
+                // fx resource
+                fx : "fx",
+                shaders : "shaders"
+            }
+        })
+    }
 
 }).call( this )

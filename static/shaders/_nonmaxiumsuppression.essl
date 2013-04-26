@@ -7,36 +7,36 @@ uniform float imageHeight;
 
 void main(){
 
-	vec2 offset = vec2(1.0/imageWidth, 1.0/imageHeight);
+    vec2 offset = vec2(1.0/imageWidth, 1.0/imageHeight);
 
-	// top left
-	float topLeft = texture2D(texture, vUv+vec2(-offset.x, -offset.y)).r;
-	// top
-	float top = texture2D(texture, vUv+vec2(0, -offset.y)).r;
-	// top right
-	float topRight = texture2D(texture, vUv+vec2(offset.x, -offset.y)).r;
-	// left
-	float left = texture2D(texture, vUv+vec2(-offset.x, 0)).r;
-	// center
-	float center = texture2D( texture, vUv).r;
-	// right
-	float right = texture2D(texture, vUv+vec2(offset.x, 0)).r;
-	// bottom left
-	float bottomLeft = texture2D(texture, vUv+vec2(-offset.x, offset.y)).r;
-	// bottom
-	float bottom = texture2D(texture, vUv+vec2(0, offset.y)).r;
-	// bottom right
-	float bottomRight = texture2D(texture, vUv+offset).r;
-	
-	float multiplier = 1.0 - step(center.r, top);
-	multiplier = multiplier * 1.0 - step(center.r, topLeft);
-	multiplier = multiplier * 1.0 - step(center.r, left);
-	multiplier = multiplier * 1.0 - step(center.r, bottomLeft);
+    // top left
+    float topLeft = texture2D(texture, vUv+vec2(-offset.x, -offset.y)).r;
+    // top
+    float top = texture2D(texture, vUv+vec2(0, -offset.y)).r;
+    // top right
+    float topRight = texture2D(texture, vUv+vec2(offset.x, -offset.y)).r;
+    // left
+    float left = texture2D(texture, vUv+vec2(-offset.x, 0)).r;
+    // center
+    float center = texture2D( texture, vUv).r;
+    // right
+    float right = texture2D(texture, vUv+vec2(offset.x, 0)).r;
+    // bottom left
+    float bottomLeft = texture2D(texture, vUv+vec2(-offset.x, offset.y)).r;
+    // bottom
+    float bottom = texture2D(texture, vUv+vec2(0, offset.y)).r;
+    // bottom right
+    float bottomRight = texture2D(texture, vUv+offset).r;
+    
+    float multiplier = 1.0 - step(center.r, top);
+    multiplier = multiplier * 1.0 - step(center.r, topLeft);
+    multiplier = multiplier * 1.0 - step(center.r, left);
+    multiplier = multiplier * 1.0 - step(center.r, bottomLeft);
      
-	lowp float maxValue = max(center.r, bottom);
-	maxValue = max(maxValue, bottomRight);
-	maxValue = max(maxValue, right);
-	maxValue = max(maxValue, topRight);
+    lowp float maxValue = max(center.r, bottom);
+    maxValue = max(maxValue, bottomRight);
+    maxValue = max(maxValue, right);
+    maxValue = max(maxValue, topRight);
      
-	gl_FragColor = vec4((center.rgb * step(maxValue, center.r) * multiplier), 1.0);
+    gl_FragColor = vec4((center.rgb * step(maxValue, center.r) * multiplier), 1.0);
 }

@@ -1,5 +1,5 @@
 <panel height="100%" id="Navigator">
-	<navlink title="Cloud" icon="cloud" class="active" href="cloud"></navlink>
-	<navlink title="Camera" icon="camera" href="camera"></navlink>
-	<navlink title="Local" icon="local" href="local"></navlink>
+    <navlink title="Cloud" icon="cloud" class="active" href="cloud"></navlink>
+    <navlink title="Camera" icon="camera" href="camera"></navlink>
+    <navlink title="Local" icon="local" href="local"></navlink>
 </panel>

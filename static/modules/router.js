@@ -1,10 +1,10 @@
 define(function(require){
 
-	var router = Router();
+    var router = Router();
 
-	router.configure({
-		recurse : "forward"
-	})
-	
-	return router;	
+    router.configure({
+        recurse : "forward"
+    })
+    
+    return router;  
 })

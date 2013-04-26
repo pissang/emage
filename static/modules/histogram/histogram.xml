@@ -1,3 +1,3 @@
 <panel title="Histogram" id="Histogram" onresize="@binding[onResize]">
-	<histogram></histogram>
+    <histogram></histogram>
 </panel>
