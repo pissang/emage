@@ -1,0 +1,22 @@
+<tab id="Filters">
+    <panel title="Filters">
+    	<container>
+    		<textfield text="@binding[seachKeyword]" class="qpf-fitlers-search" placeholder="search"></textfield>
+    	</container>
+    	<list dataSource="@binding[filters]" itemView="@binding[FilterView]"/>
+    </panel>
+    <panel title="Adjustment" id="Adjustment">
+        <container id="ColorAdjust">
+            <label>Brightness</label>
+            <range value="@binding[colorAdjust.brightness]" max="1.0" min="-1.0" step="0.01"></range>
+            <label>Contrast</label>
+            <range value="@binding[colorAdjust.contrast]" max="4.0" min="0.0" step="0.1"></range>
+            <label>Exposure</label>
+            <range value="@binding[colorAdjust.exposure]" max="10.0" min="-10.0" step="0.1"></range>
+            <label>Gamma</label>
+            <range value="@binding[colorAdjust.gamma]" max="3.0" min="0.0" step="0.1"></range>
+            <label>Saturation</label>
+            <range value="@binding[colorAdjust.saturation]" max="10.0" min="0.0" step="0.1"></range>
+        </container>
+    </panel>
+</tab>

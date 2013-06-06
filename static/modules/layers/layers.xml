@@ -1,3 +1,0 @@
-<container title="Layers" id="Layers">
-    <list dataSource="@binding[manager.provides]" itemView="@binding[Layer]"></list>
-</container>

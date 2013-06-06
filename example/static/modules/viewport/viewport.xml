@@ -1,0 +1,4 @@
+<container id="Viewport">
+	<viewport></viewport>
+	<toggle enable="@binding[applyFilter]"></toggle>
+</container>

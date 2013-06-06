@@ -1,0 +1,14 @@
+{
+    "name" : "emage",
+    "version" : "0.1.0",
+    "devDependencies" : {
+        "grunt" : "*",
+        "grunt-contrib-requirejs" : "*",
+        "grunt-contrib-uglify" : "*",
+        "grunt-contrib-jshint" : "*",
+        "grunt-contrib-concat" : "*",
+        "grunt-contrib-clean" : "*",
+        "grunt-contrib-copy" : "*",
+        "grunt-preprocess" : "*"
+    }
+}
