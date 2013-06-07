@@ -1,0 +1,7 @@
+<container id="ImageList">
+    <container class="wrapper">
+        <list dataSource="@binding[images]" class="image-list" itemView="@binding[ImageItem]"></list>
+    </container>
+    <iconbutton icon="left" class="button-left"></iconbutton>
+    <iconbutton icon="right" class="button-right"></iconbutton>
+</container>
