@@ -39,7 +39,7 @@ define(function(require){
         enable : function(next){
             this.$el.show();
 
-            this.trigger("enable")
+            this.trigger("enable");
 
             next && next();
         },

@@ -8,6 +8,7 @@ define(function(require){
     var Meta = qpf.use("components/meta/meta");
     var Base = qpf.use("components/base");
     var ko = require("knockout");
+    var _ = require("_")
 
     var router = require("../router");
 
@@ -100,7 +101,11 @@ define(function(require){
                         
                         var $el = module.start( );
                         if( $el ){
-                            self.$el.append( $el );
+                            // Append after application resize finished
+                            // In case the module is in cache and loaded immediately
+                            _.defer(function(){
+                                self.$el.append( $el );
+                            })
                         }
                         module.mainComponent.parent = self;
                         // module.__enable__ = true;

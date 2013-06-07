@@ -6,9 +6,6 @@
                 <region flex="1" name="viewport" controller="@binding[viewport]" style="margin:20px;"></region>
                 <!-- <region prefer="100" controller="@binding[imageList]"></region> -->
             </vbox>
-            <!-- <vbox prefer="200"> -->
-                <!-- <region name="parameters" controller="@binding[parameters]"></region> -->
-            <!-- </vbox> -->
             <region prefer="250" name="filters" controller="@binding[filters]"></region>
         </hbox>
     </vbox>

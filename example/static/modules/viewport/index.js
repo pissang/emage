@@ -18,12 +18,14 @@ define(function(require){
         applyFilter : ko.observable(true),
 
         resize : function(){
-            var img = this.processor.image;
-            var ratio = img.height/img.width;
 
             if( viewport.mainComponent && 
-                viewport.mainComponent.parent ){
+                viewport.mainComponent.parent &&
+                this.processor.image ){
                 
+                var img = this.processor.image;
+                var ratio = img.height/img.width;
+
                 var main = viewport.mainComponent;
                 var maxWidth = main.parent.width();
                 var maxHeight = main.parent.height();
@@ -44,6 +46,10 @@ define(function(require){
                     main.height( maxHeight );
                 }
             }
+        },
+
+        afterResize : function(){
+            viewport.resize();
         },
 
         setImage : function(img){

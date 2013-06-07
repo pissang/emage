@@ -109,6 +109,7 @@ module.exports = function(grunt){
                                 "modules/viewport/index"]
                     },
                     // optimize : "none",
+                    waitSeconds : 30,
                     modules : [{
                         name : "app"
                     }]
