@@ -55,7 +55,7 @@ define(function(require){
         this.node.add(gaussian_h);
         this.node.add(gaussian_v);
 
-        var blurSize = 1.0;
+        var blurSize = 2.0;
 
         // Parameters of gaussian blur
         this.parameters = {
@@ -74,6 +74,8 @@ define(function(require){
                 }
             }
         }
+
+        this.reset();
     }
 
     Gaussian.prototype = new FX();

@@ -1,9 +1,6 @@
 
 var emage = require("src/emage");
-
-if(_exports){
-    _exports.emage = emage;
+for(var name in emage){
+    _exports[name] = emage[name];
 }
-
-return emage;
 })

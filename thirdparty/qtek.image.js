@@ -10290,7 +10290,7 @@ define('2d/style',['require','core/base','_'],function(require){
                                     'shadowColor']
                         };
 
-    var shadowSyntaxRegex = /([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([a-zA-Z0-9\(\)\s,#]+)/;
+    var shadowSyntaxRegex = /([0-9\-]+)\s+([0-9\-]+)\s+([0-9]+)\s+([a-zA-Z0-9\(\)\s,#]+)/;
     
     var Style = Base.derive({}, {
 
@@ -14487,7 +14487,7 @@ define('3d/texture/texture2d',['require','../texture','../webglinfo'], function(
             _gl.texParameteri( _gl.TEXTURE_2D, _gl.TEXTURE_MIN_FILTER, _gl[ this.minFilter.toUpperCase() ] );
             
             var anisotropicExt = WebGLInfo.getExtension("EXT_texture_filter_anisotropic");
-            if( anisotropicExt){
+            if( anisotropicExt && this.anisotropic > 1){
                 _gl.texParameterf(_gl.TEXTURE_2D, anisotropicExt.TEXTURE_MAX_ANISOTROPY_EXT, this.anisotropic);
             }
 
@@ -14593,7 +14593,7 @@ define('3d/texture/texturecube',['require','../texture','../webglinfo','_'], fun
             _gl.texParameteri( _gl.TEXTURE_CUBE_MAP, _gl.TEXTURE_MIN_FILTER, _gl[ this.minFilter.toUpperCase() ] );
             
             var anisotropicExt = WebGLInfo.getExtension("EXT_texture_filter_anisotropic");
-            if( anisotropicExt){
+            if( anisotropicExt && this.anisotropic > 1){
                 _gl.texParameterf(_gl.TEXTURE_CUBE_MAP, anisotropicExt.TEXTURE_MAX_ANISOTROPY_EXT, this.anisotropic);
             }
 

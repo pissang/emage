@@ -48,24 +48,29 @@ define(function(require){
 
         setImage : function(img){
             this.processor.image = img;
-            this.processor.update();
+            this.update();
             this.resize();
         },
         update : _.throttle(function(){
-            viewport.processor.update()
+            // If the image is loaded;
+            if(viewport.processor.image){
+                viewport.processor.update();
+                this.trigger("update");
+            }
         }, 50),
 
-        processor : null,
+        processor : new emage.Processor(),
+
+        loadImageFromFile : loadImageFromFile,
 
         colorAdjustLayer : null,
         filterLayer : null
-    })
+    });
 
     viewport.on("start", function(){
-        canvas = viewport.mainComponent.$el.find("canvas")[0];
-        viewport.processor = new emage.Processor(canvas);
+        viewport.mainComponent.$el.find("canvas").replaceWith(this.processor.canvas);
 
-        var filterLayer = new emage.Layer("buildin.gaussian");
+        var filterLayer = new emage.Layer();
         viewport.processor.add(filterLayer);
         var colorAdjustLayer = new emage.Layer("buildin.coloradjust");
         viewport.processor.add(colorAdjustLayer);
@@ -73,12 +78,46 @@ define(function(require){
         this.filterLayer = filterLayer;
 
         // viewport.setImage('../file_upload/thumb/1.jpg');
-        var img = new Image;
+        var img = new Image();
         img.onload = function(){
             viewport.setImage( img );
         }
         img.src = '../file_upload/1.jpg';
-    })
+
+    });
+
+    document.body.addEventListener("dragover", function(e){
+        e.stopPropagation();
+        e.preventDefault();
+    }, false);
+    document.body.addEventListener("drop", handleDrop, false);
+
+    var imageReader = new FileReader();
+    function handleDrop(e){
+        e.stopPropagation();
+        e.preventDefault();
+        var file = e.dataTransfer.files[0];
+        if(file && file.type.match(/image/)){
+            loadImageFromFile(file);
+        }
+    }
+
+    function loadImageFromFile(file){
+        imageReader.onload = function(e){
+            var img = new Image();
+            imageReader.onload = null;
+
+            img.onload = function(){
+                img.onload = null;
+                viewport.setImage(img);
+
+                // remove the hint
+                viewport.mainComponent.$el.find(".draghint").remove();
+            }
+            img.src = e.target.result;
+        }
+        imageReader.readAsDataURL(file);
+    }
 
 
     return viewport;

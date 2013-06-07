@@ -118,7 +118,7 @@ define(function(require){
 
         
         var blurSize = 1.0;
-        var brightness = 8.0;
+        var brightness = 6.0;
 
         this.parameters = {
             blurSize : {
@@ -151,6 +151,8 @@ define(function(require){
                 }
             }
         }
+
+        this.reset();
     }
 
     LensBlur.prototype = new FX();

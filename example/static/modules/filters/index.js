@@ -26,6 +26,14 @@ define(function(require){
             gamma : ko.observable(1),
             saturation : ko.observable(1),
         }
+    });
+
+    var histogram;
+    filters.on("start", function(){
+        histogram = filters.mainComponent.$el.find("#Histogram").qpf("get")[0];
+        histogram.image = viewport.processor.canvas;
+        histogram.update();
+        histogram.refresh();
     })
 
     ko.computed(function(){
@@ -37,6 +45,10 @@ define(function(require){
             "saturation" : filters.colorAdjust.saturation()
         });
         viewport.update();
+    })
+    viewport.on("update", function(){
+        histogram.update();
+        histogram.refresh();
     })
 
     filters.seachKeyword.subscribe(function(newValue){

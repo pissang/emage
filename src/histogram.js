@@ -31,11 +31,18 @@ define(function(require){
         });
 
         this.channels = {
+            red : new Uint8Array(256),
+            green : new Uint8Array(256),
+            blue : new Uint8Array(256),
+            luminance : new Uint8Array(256)
+        };
+
+        this._pixels = {
             red : new Uint8Array(256*4),
             green : new Uint8Array(256*4),
             blue : new Uint8Array(256*4),
             luminance : new Uint8Array(256*4)
-        }
+        };
 
         var _gl = this.renderer.gl;
         _gl.enableVertexAttribArray(0);
@@ -85,10 +92,7 @@ define(function(require){
         _gl.bufferData(_gl.ARRAY_BUFFER, imgData.data, _gl.STATIC_DRAW);
         _gl.vertexAttribPointer(0, 4, _gl.UNSIGNED_BYTE, false, 0, 0);
 
-        // this._framBuffer.attach(this._textureRed);
-
-        _gl.clearColor(0.0, 0.0, 0.0, 0.0);
-        _gl.clear(_gl.COLOR_BUFFER_BIT | _gl.DEPTH_BUFFER_BIT);
+        _gl.clearColor(0.0, 0.0, 0.0, 1.0);
         _gl.blendEquation(_gl.FUNC_ADD);
         _gl.blendFunc(_gl.ONE, _gl.ONE);
         _gl.enable(_gl.BLEND);
@@ -98,30 +102,44 @@ define(function(require){
             height = imgData.height,
             size = width * height;
         // Red Channel
+        _gl.clear(_gl.COLOR_BUFFER_BIT);
         this._shaderRed.bind(_gl);
         this._framBuffer.attach(_gl, this._textureRed)
         this._framBuffer.bind(this.renderer);
         _gl.drawArrays( _gl.POINT, 0, size );
         // Read back
-        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.red);
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this._pixels.red);
+
         // Green Channel
+        _gl.clear(_gl.COLOR_BUFFER_BIT);
         this._shaderGreen.bind(_gl);
         this._framBuffer.attach(_gl, this._textureGreen)
         this._framBuffer.bind(this.renderer);
         _gl.drawArrays( _gl.POINT, 0, size );
-        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.green);
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this._pixels.green);
+
         // Blue channel
+        _gl.clear(_gl.COLOR_BUFFER_BIT);
         this._shaderBlue.bind(_gl);
         this._framBuffer.attach(_gl, this._textureBlue);
         this._framBuffer.bind(this.renderer);
         _gl.drawArrays( _gl.POINT, 0, size );
-        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.blue);
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this._pixels.blue);
+        
         // Luminance Channel
+        _gl.clear(_gl.COLOR_BUFFER_BIT);
         this._shaderLuminance.bind(_gl);
         this._framBuffer.attach(_gl, this._textureLuminance);
         this._framBuffer.bind(this.renderer);
         _gl.drawArrays( _gl.POINT, 0, size );
-        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.luminance);
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this._pixels.luminance);
+
+        for(var i = 0; i < 256; i++){
+            this.channels.red[i] = this._pixels.red[i*4];
+            this.channels.green[i] = this._pixels.green[i*4+1];
+            this.channels.blue[i] = this._pixels.blue[i*4+2];
+            this.channels.luminance[i] = this._pixels.luminance[i*4];
+        }
 
         _gl.disable(_gl.BLEND);
         _gl.enable(_gl.DEPTH_TEST);

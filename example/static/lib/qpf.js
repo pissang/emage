@@ -4,7 +4,7 @@
  		define(["exports", "knockout", "$", "_"], factory);
  	// No module loader
  	}else{
- 		factory( window["qpf"] = {}, ko, $, _ );
+ 		factory( window["qpf"] = {}, ko, $, _);
  	}
 
 })(function(_exports, ko, $, _){
@@ -415,22 +415,17 @@ var requirejs, require, define;
     };
 }());
 
-define("knockout", [], function(){
-	return ko;
-})
-define("$", [], function(){
+var _define = define;
+_define("$", [], function(){
     return $;
-})
-define("_", [], function(){
-    // Lodash has no method chain
-    if( ! _.chain){
-        _.chain = function(array){
-            return _(array);
-        }
-    }
-    
+});
+_define("knockout", [], function(){
+    return ko;
+});
+_define("_", [], function(){
     return _;
-})
+});
+
 //===================================================
 // Xml Parser
 // parse wml and convert it to dom with knockout data-binding
@@ -2631,13 +2626,14 @@ return Panel;
 // Window is a panel wich can be drag
 // and close
 //===================================
-define('components/container/window',['require','./container','./panel','../mixin/draggable','knockout','$'],function(require){
+define('components/container/window',['require','./container','./panel','../mixin/draggable','knockout','$','_'],function(require){
 
 var Container = require("./container");
 var Panel = require("./panel");
 var Draggable = require("../mixin/draggable");
 var ko = require("knockout");
 var $ = require("$");
+var _ = require("_");
 
 var Window = Panel.derive(function(){
     return {

@@ -1,17 +1,20 @@
 define(function(require){
 
     var qpf = require("qpf");
+    var  _ = require("_");
+
     var appXML = require("text!modules/app.xml");
-
     var router = require("modules/router");
-
     var controllerConfig = require("./controllerConfig");
-
     var Event = qpf.use("core/mixin/event");
-        
-    //dependency
-    require('modules/common/toggle');
-    require('modules/common/iconbutton');
+
+    // Dependencies
+    require("modules/common/histogram");
+    require("modules/common/list");
+    require("modules/common/modal");
+    require("modules/common/region");
+    require("modules/common/iconbutton");
+    require("modules/common/nativehtml");
 
     function start(){
         var ko = require("knockout");
@@ -31,6 +34,7 @@ define(function(require){
         start : start
 
     }
+    
     _.extend(app, Event);
 
     return app;

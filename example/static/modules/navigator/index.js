@@ -20,10 +20,10 @@ define(function(require){
         if( navlink ){
             switch(navlink.icon()){
                 case "camera":
-                    switchToCamera();
+                    // switchToCamera();
                     break;
                 case "cloud":
-                    switchToCloud();
+                    // switchToCloud();
             }
         }
         nav.$el.find(".qpf-ui-navlink").removeClass("active");

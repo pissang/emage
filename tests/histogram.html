@@ -20,9 +20,15 @@
                 var histogram = new Histogram(img);
                 histogram.downSample = 1/8;
                 img.onload = function(){
-                    console.profile("update")
+                    console.profile("update1")
                     histogram.update();
-                    console.profileEnd("update")
+                    console.profileEnd("update1")
+                    console.profile("update2")
+                    histogram.update();
+                    console.profileEnd("update2")
+                    console.profile("update3")
+                    histogram.update();
+                    console.profileEnd("update3")
                     console.log(histogram.channels);
                 }
                 img.src = "../example/file_upload/1.jpg";

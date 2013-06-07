@@ -35,7 +35,6 @@
                 qpf     : "lib/qpf",
                 emage  : "lib/emage",
                 knockout : "lib/knockout",
-                koMapping : "lib/ko.mapping",
                 // Use jquery temporary, zepto's bind does not support context
                 "$" : "lib/jquery",
                 "_" : "lib/underscore"
@@ -47,10 +46,12 @@
                 '_' : {
                     exports : "_"
                 },
-                'app' : ["modules/common/list",
+                'app' :["modules/common/histogram",
+                        "modules/common/list",
                         "modules/common/modal",
                         "modules/common/region",
-                        "modules/common/toggle"]
+                        "modules/common/iconbutton",
+                        "modules/common/nativehtml"]
             },
         })
     }

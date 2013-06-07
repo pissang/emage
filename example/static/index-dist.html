@@ -1,13 +1,17 @@
 <!Doctype html>
 <html>
     <head>
-        <title>Qtek Image</title>
+        <title>EMAGE</title>
         <meta charset="utf8" />
         <link rel="stylesheet" type="text/css" href="style/qpf/base.css">
         <link rel="stylesheet" type="text/css" href="style/app.css">
-        <script type="text/javascript" src="lib/LAB.js"></script>
-        <script type="text/javascript" src="boot.js"></script>
+        <script type="text/javascript" src="lib.js"></script>
     </head>
     <body id="Gallery">
+        <script type="text/javascript">
+            require(["app"], function(app){
+                app.start();
+            })
+        </script>
     </body>
 </html>

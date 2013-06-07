@@ -18,7 +18,32 @@ module.exports = function(grunt){
                     src : "dist/emage.js",
                     dest : "example/static/lib/emage.js"
                 }]
+            },
+            example : {
+                files : [{
+                    src : "example/static-dist/index-dist.html",
+                    dest : "example/static-dist/index.html"
+                }]
             }
+        },
+        less : {
+            example : {
+                files : {
+                    "example/static-dist/style/app.css" : "example/static-dist/style/app.less",
+                    "example/static-dist/style/qpf/base.css" : "example/static-dist/style/qpf/base.less"
+                }
+            }
+        },
+        concat : {
+            example : {
+                src : ["example/static/lib/require.js", "example/static/lib/director.js"],
+                dest : "example/static-dist/lib.js"
+            }
+        },
+        clean : {
+            example : ["example/static-dist/lib", 
+                    "example/static-dist/boot.js",
+                    "example/static-dist/index-dist.html"]
         },
         requirejs : {
             build : {
@@ -60,7 +85,34 @@ module.exports = function(grunt){
                 }
             },
             example : {
-
+                options : {
+                    appDir : 'example/static',
+                    baseUrl : "./",
+                    dir : 'example/static-dist',
+                    paths : {
+                        async   : "lib/async",
+                        qpf     : "lib/qpf",
+                        emage  : "lib/emage",
+                        knockout : "lib/knockout",
+                        "$" : "lib/jquery",
+                        "_" : "lib/underscore"
+                    },
+                    shim : {
+                        '$' : {
+                            exports : "$"
+                        },
+                        '_' : {
+                            exports : "_"
+                        },
+                        "app" : ["modules/filters/index",
+                                "modules/navigator/index",
+                                "modules/viewport/index"]
+                    },
+                    // optimize : "none",
+                    modules : [{
+                        name : "app"
+                    }]
+                }
             }
         }
     })
@@ -70,6 +122,15 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     grunt.registerTask("default", ["requirejs:build", "uglify:build", "copy:build"]);
+    grunt.registerTask("example", ["requirejs:build", 
+                                    "uglify:build", 
+                                    "copy:build", 
+                                    "requirejs:example",
+                                    "concat:example",
+                                    "copy:example",
+                                    "less:example",
+                                    "clean:example"]);
 }
