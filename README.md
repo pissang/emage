@@ -15,7 +15,6 @@ Or in the AMD environment
 	
 	var emage =	require("emage")
 
------
 Process the image
 
 
@@ -60,12 +59,14 @@ Process the image
 
 Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 
+-----
 #####Gaussian Blur#####
 
 **buildin.gaussian**
 
 + blurSize : 2.0
 
+-----
 
 #####Lens Blur#####
 
@@ -74,6 +75,7 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 + blurSize : 0.4
 + brightness : 6.0
 
+-----
 #####Color Adjust#####
 
 **buildin.coloradjust**
@@ -84,6 +86,7 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 + exposure : 0.0
 + saturation : 1.0
 
+-----
 #####Color Matrix#####
 
 **buildin.colormatrix**
@@ -91,24 +94,29 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 + colorMatrix : [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
 + intensity : 1.0
 
+-----
 #####Sepia#####
 
 **buildin.sepia**
 
+-----
 #####Color Lookup#####
 
 **buildin.lut**
 
 + lookup : Image
 
+-----
 #####Sobel Edge Detection#####
 
 **buildin.sobel**
 
+-----
 #####Toon Effect#####
 
 **buildin.toon**
 
+-----
 #####Sketch Effect#####
 
 **buildin.sketch**
