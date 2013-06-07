@@ -70,7 +70,7 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 
 #####Lens Blur#####
 
-**buildin.lensblur**
+buildin.lensblur
 
 + blurSize : 0.4
 + brightness : 6.0
@@ -78,7 +78,7 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 -----
 #####Color Adjust#####
 
-**buildin.coloradjust**
+buildin.coloradjust
 
 + brightness : 0.0
 + gamma : 1.0
@@ -89,7 +89,7 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 -----
 #####Color Matrix#####
 
-**buildin.colormatrix**
+buildin.colormatrix
 
 + colorMatrix : [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
 + intensity : 1.0
@@ -97,29 +97,29 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 -----
 #####Sepia#####
 
-**buildin.sepia**
+buildin.sepia
 
 -----
 #####Color Lookup#####
 
-**buildin.lut**
+buildin.lut
 
 + lookup : Image
 
 -----
 #####Sobel Edge Detection#####
 
-**buildin.sobel**
+buildin.sobel
 
 -----
 #####Toon Effect#####
 
-**buildin.toon**
+buildin.toon
 
 -----
 #####Sketch Effect#####
 
-**buildin.sketch**
+buildin.sketch
 
 
 ####Histogram compute####
