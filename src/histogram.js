@@ -19,18 +19,30 @@ define(function(require){
 
     var Histogram = function(image){
 
-        this.downSample = 1/2;
+        this.downSample = 1/8;
         this.image = image;
 
         this.canvas = document.createElement("canvas");
 
         this.renderer = new qtek3d.Renderer({
-            canvas : this.canvas
+            canvas : this.canvas,
+            // http://stackoverflow.com/questions/7156971/webgl-readpixels-is-always-returning-0-0-0-0
+            preserveDrawingBuffer : true
         });
+
+        this.channels = {
+            red : new Uint8Array(256*4),
+            green : new Uint8Array(256*4),
+            blue : new Uint8Array(256*4),
+            luminance : new Uint8Array(256*4)
+        }
+
         var _gl = this.renderer.gl;
         _gl.enableVertexAttribArray(0);
 
-        this._framBuffer = new qtek3d.FrameBuffer();
+        this._framBuffer = new qtek3d.FrameBuffer({
+            depthBuffer : false
+        });
         this._textureRed = new qtek3d.texture.Texture2D(texParams);
         this._textureBlue = new qtek3d.texture.Texture2D(texParams);
         this._textureGreen = new qtek3d.texture.Texture2D(texParams);
@@ -71,10 +83,59 @@ define(function(require){
 
         _gl.bindBuffer(_gl.ARRAY_BUFFER, this._buffer);
         _gl.bufferData(_gl.ARRAY_BUFFER, imgData.data, _gl.STATIC_DRAW);
-        _gl.vertexAttribPointer(0, canvas.width * canvas.height, _gl.UNSIGNED_BYTE, false, 0, 0);
+        _gl.vertexAttribPointer(0, 4, _gl.UNSIGNED_BYTE, false, 0, 0);
 
         // this._framBuffer.attach(this._textureRed);
-        
+
+        _gl.clearColor(0.0, 0.0, 0.0, 0.0);
+        _gl.clear(_gl.COLOR_BUFFER_BIT | _gl.DEPTH_BUFFER_BIT);
+        _gl.blendEquation(_gl.FUNC_ADD);
+        _gl.blendFunc(_gl.ONE, _gl.ONE);
+        _gl.enable(_gl.BLEND);
+        _gl.disable(_gl.DEPTH_TEST);
+
+        var width = imgData.width,
+            height = imgData.height,
+            size = width * height;
+        // Red Channel
+        this._shaderRed.bind(_gl);
+        this._framBuffer.attach(_gl, this._textureRed)
+        this._framBuffer.bind(this.renderer);
+        _gl.drawArrays( _gl.POINT, 0, size );
+        // Read back
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.red);
+        // Green Channel
+        this._shaderGreen.bind(_gl);
+        this._framBuffer.attach(_gl, this._textureGreen)
+        this._framBuffer.bind(this.renderer);
+        _gl.drawArrays( _gl.POINT, 0, size );
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.green);
+        // Blue channel
+        this._shaderBlue.bind(_gl);
+        this._framBuffer.attach(_gl, this._textureBlue);
+        this._framBuffer.bind(this.renderer);
+        _gl.drawArrays( _gl.POINT, 0, size );
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.blue);
+        // Luminance Channel
+        this._shaderLuminance.bind(_gl);
+        this._framBuffer.attach(_gl, this._textureLuminance);
+        this._framBuffer.bind(this.renderer);
+        _gl.drawArrays( _gl.POINT, 0, size );
+        _gl.readPixels(0, 0, 256, 1, _gl.RGBA, _gl.UNSIGNED_BYTE, this.channels.luminance);
+
+        _gl.disable(_gl.BLEND);
+        _gl.enable(_gl.DEPTH_TEST);
+
+        document.body.appendChild(this.canvas);
     }
 
+    Histogram.prototype.draw = function(){
+
+    }
+
+    Histogram.prototype.get = function(){
+
+    }
+
+    return Histogram;
 })

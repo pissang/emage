@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="../thirdparty/require.js"></script>
+    </head>
+    <body style="margin:0px">
+        <script type="text/javascript">
+            requirejs.config({
+                'baseUrl' : "./",
+                'paths' : {
+                    "qtek" : "../thirdparty/qtek.image",
+                    "text" : "../src/text",
+                    "shaders" : "../src/buildin/shaders"
+                }
+            })
+
+            require(["../src/histogram"], function(Histogram){
+
+                var img = new Image();
+                var histogram = new Histogram(img);
+                histogram.downSample = 1/8;
+                img.onload = function(){
+                    console.profile("update")
+                    histogram.update();
+                    console.profileEnd("update")
+                    console.log(histogram.channels);
+                }
+                img.src = "../example/file_upload/1.jpg";
+            })
+        </script>
+    </body>
+</html>
