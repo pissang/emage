@@ -369,6 +369,30 @@ body {
   float: none;
   line-height: 18px;
 }
+#Filters .hue .qpf-slider-percentage {
+  display: none;
+}
+#Filters .hue .qpf-slider-groove {
+  background: -webkit-linear-gradient(left, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  background: -moz-linear-gradient(left, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  background: linear-gradient(left, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+}
+#Filters .saturation .qpf-slider-percentage {
+  display: none;
+}
+#Filters .saturation .qpf-slider-groove {
+  background: -webkit-linear-gradient(left, #808080 0%, #ff0000 100%);
+  background: -moz-linear-gradient(left, #808080 0%, #ff0000 100%);
+  background: -linear-linear-gradient(left, #808080 0%, #ff0000 100%);
+}
+#Filters .brightness .qpf-slider-percentage {
+  display: none;
+}
+#Filters .brightness .qpf-slider-groove {
+  background: -webkit-linear-gradient(left, #000000 0%, #ffffff 100%);
+  background: -moz-linear-gradient(left, #000000 0%, #ffffff 100%);
+  background: -linear-linear-gradient(left, #000000 0%, #ffffff 100%);
+}
 #ColorAdjust {
   padding: 5px;
 }

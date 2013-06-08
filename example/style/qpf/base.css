@@ -214,41 +214,36 @@ body {
   line-height: 9px;
   font-size: 16px;
 }
-.qpf-ui-range {
+.qpf-ui-slider {
   height: 25px;
   position: relative;
 }
-.qpf-ui-range .qpf-range-groove-box {
+.qpf-ui-slider .qpf-slider-groove-box {
   float: left;
 }
-.qpf-ui-range .qpf-range-groove-outer {
+.qpf-ui-slider .qpf-slider-groove-outer {
   box-sizing: border-box;
 }
-.qpf-ui-range .qpf-range-groove {
+.qpf-ui-slider .qpf-slider-groove {
   background-color: #030303;
   box-shadow: 0px 0px 1px black;
   border-bottom: 1px solid #3D3D3D;
   border-radius: 2px;
   overflow: hidden;
 }
-.qpf-ui-range .qpf-range-percentage {
+.qpf-ui-slider .qpf-slider-percentage {
   background-color: #4EADD5;
   margin-top: 1px;
   margin-left: 1px;
   border-radius: 2px;
 }
-.qpf-ui-range .qpf-range-slider {
-  width: 14px;
+.qpf-ui-slider .qpf-slider-control {
+  width: 12px;
   height: 14px;
   position: absolute;
-  border-radius: 7px;
-  background-color: #505050;
-  border-top: 1px solid #5C5C5C;
-  box-shadow: 0px 0px 3px black;
-  box-sizing: border-box;
-  cursor: pointer;
+  background-image: url(images/slider-control.png);
 }
-.qpf-ui-range .qpf-range-slider .qpf-range-value {
+.qpf-ui-slider .qpf-slider-control .qpf-slider-value {
   background-color: #464648;
   color: #939395;
   padding: 2px 4px;
@@ -265,90 +260,82 @@ body {
   -o-transition-delay: 1s;
   transition-delay: 1s;
 }
-.qpf-ui-range .qpf-range-slider:hover .qpf-range-value {
+.qpf-ui-slider .qpf-slider-control:hover .qpf-slider-value {
   opacity: 1;
   -webkit-transition-delay: 0s;
   -moz-transition-delay: 0s;
   -o-transition-delay: 0s;
   transition-delay: 0s;
 }
-.qpf-ui-range .qpf-range-slider-inner {
-  width: 8px;
-  height: 8px;
-  background-color: #1A1A1A;
-  border-radius: 4px;
-  margin: 2px 3px;
-  box-shadow: 0px 1px 1px #6B6A6A;
-}
-.qpf-ui-range .qpf-range-min {
+.qpf-ui-slider .qpf-slider-min {
   position: absolute;
   font-size: 12px;
   color: #616161;
 }
-.qpf-ui-range .qpf-range-max {
+.qpf-ui-slider .qpf-slider-max {
   position: absolute;
   font-size: 12px;
   color: #616161;
 }
-.qpf-ui-range.horizontal .qpf-range-groove-box {
+.qpf-ui-slider.horizontal .qpf-slider-groove-box {
   width: 100%;
 }
-.qpf-ui-range.horizontal .qpf-range-groove-outer {
+.qpf-ui-slider.horizontal .qpf-slider-groove-outer {
   padding: 0px 7px;
 }
-.qpf-ui-range.horizontal .qpf-range-groove {
+.qpf-ui-slider.horizontal .qpf-slider-groove {
   width: 100%;
   height: 3px;
   margin-top: 15px;
 }
-.qpf-ui-range.horizontal .qpf-range-percentage {
+.qpf-ui-slider.horizontal .qpf-slider-percentage {
   height: 2px;
 }
-.qpf-ui-range.horizontal .qpf-range-min {
+.qpf-ui-slider.horizontal .qpf-slider-min {
   left: 0px;
   top: 2px;
 }
-.qpf-ui-range.horizontal .qpf-range-max {
+.qpf-ui-slider.horizontal .qpf-slider-max {
   right: 0px;
   top: 2px;
 }
-.qpf-ui-range.horizontal .qpf-range-slider {
+.qpf-ui-slider.horizontal .qpf-slider-control {
   top: 10px;
 }
-.qpf-ui-range.horizontal .qpf-range-slider .qpf-range-value {
+.qpf-ui-slider.horizontal .qpf-slider-control .qpf-slider-value {
   bottom: -1px;
   left: 16px;
 }
-.qpf-ui-range.vertical {
+.qpf-ui-slider.vertical {
   height: 100%;
 }
-.qpf-ui-range.vertical .qpf-range-groove-box {
+.qpf-ui-slider.vertical .qpf-slider-groove-box {
   height: 100%;
 }
-.qpf-ui-range.vertical .qpf-range-groove-outer {
+.qpf-ui-slider.vertical .qpf-slider-groove-outer {
   padding: 7px 0px;
   height: 100%;
 }
-.qpf-ui-range.vertical .qpf-range-groove {
+.qpf-ui-slider.vertical .qpf-slider-groove {
   width: 3px;
   height: 100%;
   margin-left: 5px;
 }
-.qpf-ui-range.vertical .qpf-range-percentage {
+.qpf-ui-slider.vertical .qpf-slider-percentage {
   height: 2px;
 }
-.qpf-ui-range.vertical .qpf-range-min {
+.qpf-ui-slider.vertical .qpf-slider-min {
   left: 15px;
   top: 0px;
 }
-.qpf-ui-range.vertical .qpf-range-max {
+.qpf-ui-slider.vertical .qpf-slider-max {
   left: 15px;
   bottom: 0px;
 }
-.qpf-ui-range.vertical .qpf-range-slider {
+.qpf-ui-slider.vertical .qpf-slider-control {
   top: 10px;
 }
-.qpf-ui-range.vertical .qpf-range-slider .qpf-range-value {
+.qpf-ui-slider.vertical .qpf-slider-control .qpf-slider-value {
   bottom: -1px;
   left: 16px;
 }
