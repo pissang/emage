@@ -24,8 +24,9 @@ define(function(require){
             contrast : ko.observable(1),
             exposure : ko.observable(0),
             gamma : ko.observable(1),
-            saturation : ko.observable(1),
-        }
+            saturation : ko.observable(1)
+        },
+        hue : ko.observable(0)
     });
 
     var histogram;
@@ -44,6 +45,8 @@ define(function(require){
             "gamma" : filters.colorAdjust.gamma(),
             "saturation" : filters.colorAdjust.saturation()
         });
+
+        viewport.hueLayer.set("hue", filters.hue());
         viewport.update();
     })
     viewport.on("update", function(){

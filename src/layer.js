@@ -56,6 +56,7 @@ define(function(require){
     require("./buildin/gaussian");
     require("./buildin/lensblur");
     require("./buildin/coloradjust");
+    require("./buildin/hue");
     require("./buildin/colormatrix");
     require("./buildin/sepia");
     require("./buildin/lut");

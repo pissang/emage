@@ -416,6 +416,10 @@ var requirejs, require, define;
 }());
 
 var _define = define;
+// Here if we directly use define, the app build on it will have some problem when running the optimized version
+// I guess the optimizer will use regexp to detemine if the depedencies is defined in the file already
+// And it find jQuery, knokcout, underscore is defined in the qpf, even if it is in closure
+// and won't affect the outer environment. And optimizer won't add the dependencies file in the final optimized js file.
 _define("$", [], function(){
     return $;
 });
@@ -2038,7 +2042,7 @@ return Label;
 
 });
 //===================================
-// Range component
+// Slider component
 // 
 // @VMProp value
 // @VMProp step
@@ -2049,9 +2053,9 @@ return Label;
 //
 // @method computePercentage
 // @method updatePosition   update the slider position manually
-// @event change newValue prevValue self[Range]
+// @event change newValue prevValue self[Slider]
 //===================================
-define('components/meta/range',['require','./meta','../mixin/draggable','knockout','$','_'],function(require){
+define('components/meta/slider',['require','./meta','../mixin/draggable','knockout','$','_'],function(require){
 
 var Meta = require("./meta");
 var Draggable = require("../mixin/draggable");
@@ -2059,7 +2063,7 @@ var ko = require("knockout");
 var $ = require("$");
 var _ = require("_");
 
-var Range = Meta.derive(function(){
+var Slider = Meta.derive(function(){
 
     var ret =  {
 
@@ -2098,22 +2102,22 @@ var Range = Meta.derive(function(){
 
 }, {
 
-    type : "RANGE",
+    type : "SLIDER",
 
-    css : 'range',
+    css : 'slider',
 
-    template : '<div class="qpf-range-groove-box">\
-                    <div class="qpf-range-groove-outer">\
-                        <div class="qpf-range-groove">\
-                            <div class="qpf-range-percentage"></div>\
+    template : '<div class="qpf-slider-groove-box">\
+                    <div class="qpf-slider-groove-outer">\
+                        <div class="qpf-slider-groove">\
+                            <div class="qpf-slider-percentage"></div>\
                         </div>\
                     </div>\
                 </div>\
-                <div class="qpf-range-min" data-bind="text:_format(min())"></div>\
-                <div class="qpf-range-max" data-bind="text:_format(max())"></div>\
-                <div class="qpf-range-slider">\
-                    <div class="qpf-range-slider-inner"></div>\
-                    <div class="qpf-range-value" data-bind="text:_format(value())"></div>\
+                <div class="qpf-slider-min" data-bind="text:_format(min())"></div>\
+                <div class="qpf-slider-max" data-bind="text:_format(max())"></div>\
+                <div class="qpf-slider-control">\
+                    <div class="qpf-slider-control-inner"></div>\
+                    <div class="qpf-slider-value" data-bind="text:_format(value())"></div>\
                 </div>',
 
     eventsProvided : _.union(Meta.prototype.eventsProvided, "change"),
@@ -2140,12 +2144,12 @@ var Range = Meta.derive(function(){
     afterRender : function(){
 
         // cache the element;
-        this._$box = this.$el.find(".qpf-range-groove-box");
-        this._$percentage = this.$el.find(".qpf-range-percentage");
-        this._$slider = this.$el.find(".qpf-range-slider");
+        this._$box = this.$el.find(".qpf-slider-groove-box");
+        this._$percentage = this.$el.find(".qpf-slider-percentage");
+        this._$control = this.$el.find(".qpf-slider-control");
 
-        this.draggable.container = this.$el.find(".qpf-range-groove-box");
-        var item = this.draggable.add( this._$slider );
+        this.draggable.container = this.$el.find(".qpf-slider-groove-box");
+        var item = this.draggable.add( this._$control );
         
         item.on("drag", this._dragHandler, this);
 
@@ -2183,8 +2187,8 @@ var Range = Meta.derive(function(){
                             this._$box.width() :
                             this._$box.height();
         this._sliderSize = isHorizontal ?
-                            this._$slider.width() :
-                            this._$slider.height();
+                            this._$control.width() :
+                            this._$control.height();
     },
 
     computePercentage : function(){
@@ -2204,8 +2208,8 @@ var Range = Meta.derive(function(){
                             this._$box.offset().left :
                             this._$box.offset().top;
         var sliderOffset = isHorizontal ? 
-                            this._$slider.offset().left :
-                            this._$slider.offset().top;
+                            this._$control.offset().left :
+                            this._$control.offset().top;
 
         return sliderOffset - grooveOffset;
     },
@@ -2219,12 +2223,12 @@ var Range = Meta.derive(function(){
                     {left : grooveOffset+offsetSize} :
                     {top : grooveOffset+offsetSize};
 
-        this._$slider.offset( offset );
+        this._$control.offset( offset );
     },
 
     updatePosition : function(){
         
-        if( ! this._$slider){
+        if( ! this._$control){
             return;
         }
         if( this.autoResize ){
@@ -2241,7 +2245,7 @@ var Range = Meta.derive(function(){
         if( this._boxSize > 0 ){
             this._setOffset(size);
         }else{  //incase the element is still not in the document
-            this._$slider.css( this._isHorizontal() ?
+            this._$control.css( this._isHorizontal() ?
                                 "right" : "bottom", (1-percentage)*100+"%");
         }
         this._$percentage.css( this._isHorizontal() ?
@@ -2253,9 +2257,9 @@ var Range = Meta.derive(function(){
     }
 })
 
-Meta.provideBinding("range", Range);
+Meta.provideBinding("slider", Slider);
 
-return Range;
+return Slider;
 
 });
 //===================================
@@ -2265,7 +2269,7 @@ return Range;
 // @VMProp value
 // @VMProp precision
 //
-// @event change newValue prevValue self[Range]
+// @event change newValue prevValue self[Spinner]
 //===================================
 define('components/meta/spinner',['require','./meta','knockout','$','_'],function(require){
 
@@ -3192,7 +3196,7 @@ return Widget;
 // @VMProp  constrainType
 // @VMProp  constrainRatio
 //===================================
-define('components/widget/vector',['require','./widget','../base','core/xmlparser','knockout','$','../meta/spinner','../meta/range','_'],function(require){
+define('components/widget/vector',['require','./widget','../base','core/xmlparser','knockout','$','../meta/spinner','../meta/slider','_'],function(require){
 
 var Widget = require("./widget");
 var Base = require("../base");
@@ -3200,15 +3204,15 @@ var XMLParser = require("core/xmlparser");
 var ko = require("knockout");
 var $ = require("$");
 var Spinner = require("../meta/spinner");
-var Range = require("../meta/range");
+var Slider = require("../meta/slider");
 var _ = require("_");
 
 var Vector = Widget.derive(function(){
 return {
 
     // data source of item can be spinner type
-    // or range type, distinguish with type field
-    // @field type  spinner | range
+    // or slider type, distinguish with type field
+    // @field type  spinner | slider
     items : ko.observableArray(),
 
     // set true if you want to constrain the proportions
@@ -3224,7 +3228,7 @@ return {
     _constrainRatio : [],
     // Constrain diff is only uese when constrain type is diff
     _constrainDiff : [],
-    // cache all sub spinner or range components
+    // cache all sub spinner or slider components
     _sub : []
 }}, {
 
@@ -3367,7 +3371,7 @@ XMLParser.provideParser("vector", function(xmlNode){
     _.chain(children).filter(function(child){
         var tagName = child.tagName && child.tagName.toLowerCase();
         return tagName && (tagName === "spinner" ||
-                            tagName === "range");
+                            tagName === "slider");
     }).each(function(child){
         var attributes = XMLParser.util.convertAttributes(child.attributes);
         attributes.type = child.tagName.toLowerCase();
@@ -3587,7 +3591,7 @@ return Color;
 //=============================================
 // Palette
 //=============================================
-define('components/widget/palette',['require','./widget','knockout','./color_vm','$','_','components/widget/vector','components/meta/textfield','components/meta/range'],function(require){
+define('components/widget/palette',['require','./widget','knockout','./color_vm','$','_','components/widget/vector','components/meta/textfield','components/meta/slider'],function(require){
 
 var Widget = require("./widget");
 var ko = require("knockout");
@@ -3598,7 +3602,7 @@ var _ = require("_");
 // component will be used in the widget
 require("components/widget/vector");
 require("components/meta/textfield");
-require("components/meta/range");
+require("components/meta/slider");
 
 var Palette = Widget.derive(function(){
     var ret = new Color;
@@ -3630,7 +3634,7 @@ var Palette = Widget.derive(function(){
                         </div>\
                         <div style="clear:both"></div>\
                         <div class="qpf-palette-alpha">\
-                            <div data-bind="qpf:{type:\'range\', min:0, max:1, value:alpha, precision:2}"></div>\
+                            <div data-bind="qpf:{type:\'slider\', min:0, max:1, value:alpha, precision:2}"></div>\
                         </div>\
                     </div>\
                     <div class="qpf-right">\
@@ -3799,7 +3803,7 @@ Widget.provideBinding("palette", Palette);
 return Palette;
 });
 // portal for all the components
-define('src/qpf',['require','core/xmlparser','core/mixin/derive','core/mixin/event','components/base','components/util','components/mixin/draggable','components/meta/meta','components/meta/button','components/meta/checkbox','components/meta/combobox','components/meta/label','components/meta/range','components/meta/spinner','components/meta/textfield','components/container/container','components/container/panel','components/container/window','components/container/tab','components/container/vbox','components/container/hbox','components/container/inline','components/container/application','components/widget/widget','components/widget/vector','components/widget/palette'],function(require){
+define('src/qpf',['require','core/xmlparser','core/mixin/derive','core/mixin/event','components/base','components/util','components/mixin/draggable','components/meta/meta','components/meta/button','components/meta/checkbox','components/meta/combobox','components/meta/label','components/meta/slider','components/meta/spinner','components/meta/textfield','components/container/container','components/container/panel','components/container/window','components/container/tab','components/container/vbox','components/container/hbox','components/container/inline','components/container/application','components/widget/widget','components/widget/vector','components/widget/palette'],function(require){
 
     console.log("qpf is loaded");
 
@@ -3823,7 +3827,7 @@ define('src/qpf',['require','core/xmlparser','core/mixin/derive','core/mixin/eve
                 checkbox : require('components/meta/checkbox'),
                 combobox : require('components/meta/combobox'),
                 label : require('components/meta/label'),
-                range : require('components/meta/range'),
+                slider : require('components/meta/slider'),
                 spinner : require('components/meta/spinner'),
                 textfield : require('components/meta/textfield')
             },

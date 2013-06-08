@@ -62,7 +62,7 @@ Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 -----
 #####Gaussian Blur#####
 
-**buildin.gaussian**
+buildin.gaussian
 
 + blurSize : 2.0
 

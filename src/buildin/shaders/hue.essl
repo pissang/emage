@@ -1,4 +1,4 @@
-varying vec2 vUv;
+varying vec2 v_Texcoord;
 
 uniform sampler2D texture;
 uniform float hueAdjust;
@@ -16,7 +16,7 @@ const vec4 kYIQToB   = vec4 (1.0, -1.1070, 1.7046, 0.0);
  void main ()
  {
      // Sample the input pixel
-    vec4 color   = texture2D(texture, vUv);
+    vec4 color   = texture2D(texture, v_Texcoord);
      
      // Convert to YIQ
     float YPrime  = dot (color, kRGBToYPrime);

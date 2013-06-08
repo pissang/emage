@@ -63,7 +63,7 @@ define(function(require){
                 max : 10.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return blurSize;
                 },

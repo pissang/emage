@@ -17144,7 +17144,7 @@ define('src/buildin/gaussian',['require','qtek','../fx'],function(require){
                 max : 10.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return blurSize;
                 },
@@ -17300,7 +17300,7 @@ define('src/buildin/lensblur',['require','qtek','../fx','shaders/hexagonal_blur.
                 max : 10.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return blurSize;
                 },
@@ -17315,7 +17315,7 @@ define('src/buildin/lensblur',['require','qtek','../fx','shaders/hexagonal_blur.
                 max : 10.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return brightness;
                 },
@@ -17376,7 +17376,7 @@ define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
                 max : 1.0,
                 min : -1.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return brightness;
                 },
@@ -17389,7 +17389,7 @@ define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
                 max : 4.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return contrast;
                 },
@@ -17402,7 +17402,7 @@ define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
                 max : 10.0,
                 min : -10.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return exposure;
                 },
@@ -17415,7 +17415,7 @@ define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
                 max : 3.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return gamma;
                 },
@@ -17428,7 +17428,7 @@ define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
                 max : 10.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return saturation;
                 },
@@ -17455,6 +17455,64 @@ define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
     FX.export("buildin.coloradjust", ColorAdjust);
 
     return ColorAdjust;
+});
+define('shaders/hue.essl',[],function () { return 'varying vec2 v_Texcoord;\n\nuniform sampler2D texture;\nuniform float hueAdjust;\n\nconst vec4 kRGBToYPrime = vec4 (0.299, 0.587, 0.114, 0.0);\nconst vec4 kRGBToI     = vec4 (0.595716, -0.274453, -0.321263, 0.0);\nconst vec4 kRGBToQ     = vec4 (0.211456, -0.522591, 0.31135, 0.0);\n \nconst vec4 kYIQToR   = vec4 (1.0, 0.9563, 0.6210, 0.0);\nconst vec4 kYIQToG   = vec4 (1.0, -0.2721, -0.6474, 0.0);\nconst vec4 kYIQToB   = vec4 (1.0, -1.1070, 1.7046, 0.0);\n \n\n\n void main ()\n {\n     // Sample the input pixel\n    vec4 color   = texture2D(texture, v_Texcoord);\n     \n     // Convert to YIQ\n    float YPrime  = dot (color, kRGBToYPrime);\n    float I      = dot (color, kRGBToI);\n    float Q      = dot (color, kRGBToQ);\n     \n     // Calculate the hue and chroma\n    float hue     = atan (Q, I);\n    float chroma  = sqrt (I * I + Q * Q);\n     \n    // Make the user\'s adjustments\n    hue += (-hueAdjust); //why negative rotation?\n     \n    // Convert back to YIQ\n    Q = chroma * sin (hue);\n    I = chroma * cos (hue);\n     \n     // Convert back to RGB\n    vec4 yIQ = vec4 (YPrime, I, Q, 0.0);\n    color.r = dot (yIQ, kYIQToR);\n    color.g = dot (yIQ, kYIQToG);\n    color.b = dot (yIQ, kYIQToB);\n     \n    // Save the result\n    gl_FragColor = color;\n }';});
+
+define('src/buildin/hue',['require','qtek','../fx','shaders/hue.essl'],function(require){
+
+    var qtek = require("qtek");
+    var qtek3d = qtek["3d"];
+    var FX = require("../fx");
+
+    var Hue = function(){
+        
+        FX.call(this);
+
+        var node = new qtek3d.compositor.graph.Node({
+            shader : require('shaders/hue.essl'),
+            inputs : {
+                "texture" : {
+                    node : null,
+                    pin : "color"
+                }
+            },
+            outputs : {
+                "color" : {}
+            }
+        });
+        this.node = node;
+
+        var hue = 0;
+        this.parameters = {
+            hue : {
+                max : 180,
+                min : -180,
+                precision : 1.0,
+                ui : 'slider',
+                get value(){
+                    return hue;
+                },
+                set value(val){
+                    hue = val;
+                    node.setParameter('hueAdjust', val / 180.0 * Math.PI);
+                }
+            }
+        }
+
+        this.reset();
+    }
+
+    Hue.prototype = new FX();
+
+    Hue.prototype.constructor = Hue;
+
+    Hue.prototype.reset = function(){
+        this.parameters.hue.value = 0;
+    }
+
+    FX.export("buildin.hue", Hue);
+
+    return Hue;
 });
 define('shaders/colormatrix.essl',[],function () { return 'varying vec2 v_Texcoord;\n\nuniform sampler2D texture;\n\nuniform mat4 colorMatrix;\nuniform float intensity : 1.0;\n\nvoid main()\n{\n    vec4 tex = texture2D(texture, v_Texcoord);\n    vec4 outputColor = tex * colorMatrix;\n\n    gl_FragColor = intensity * outputColor + ( (1.0-intensity) * tex );\n}';});
 
@@ -17701,7 +17759,7 @@ define('src/buildin/toon',['require','qtek','../fx','shaders/toon.essl'],functio
             quantizationLevels = 10;
         this.parameters = {
             threshold : {
-                ui : "range",
+                ui : "slider",
                 min : 0,
                 max : 2,
                 get value(){
@@ -17773,7 +17831,7 @@ define('src/buildin/grayscale',['require','qtek','../fx'],function(require){
 
     return GrayScale;
 });
-define('src/layer',['require','qtek','./fx','./buildin/gaussian','./buildin/lensblur','./buildin/coloradjust','./buildin/colormatrix','./buildin/sepia','./buildin/lut','./buildin/sobel','./buildin/sketch','./buildin/toon','./buildin/grayscale'],function(require){
+define('src/layer',['require','qtek','./fx','./buildin/gaussian','./buildin/lensblur','./buildin/coloradjust','./buildin/hue','./buildin/colormatrix','./buildin/sepia','./buildin/lut','./buildin/sobel','./buildin/sketch','./buildin/toon','./buildin/grayscale'],function(require){
 
     var qtek = require("qtek");
     var FX = require("./fx");
@@ -17831,6 +17889,7 @@ define('src/layer',['require','qtek','./fx','./buildin/gaussian','./buildin/lens
     require("./buildin/gaussian");
     require("./buildin/lensblur");
     require("./buildin/coloradjust");
+    require("./buildin/hue");
     require("./buildin/colormatrix");
     require("./buildin/sepia");
     require("./buildin/lut");

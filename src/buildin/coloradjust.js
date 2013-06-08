@@ -33,7 +33,7 @@ define(function(require){
                 max : 1.0,
                 min : -1.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return brightness;
                 },
@@ -46,7 +46,7 @@ define(function(require){
                 max : 4.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return contrast;
                 },
@@ -59,7 +59,7 @@ define(function(require){
                 max : 10.0,
                 min : -10.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return exposure;
                 },
@@ -72,7 +72,7 @@ define(function(require){
                 max : 3.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return gamma;
                 },
@@ -85,7 +85,7 @@ define(function(require){
                 max : 10.0,
                 min : 0.0,
                 step : 0.1,
-                ui : "range",
+                ui : "slider",
                 get value(){
                     return saturation;
                 },

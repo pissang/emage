@@ -63,13 +63,14 @@ define(function(require){
                 viewport.processor.update();
                 this.trigger("update");
             }
-        }, 50),
+        }, 100),
 
         processor : new emage.Processor(),
 
         loadImageFromFile : loadImageFromFile,
 
         colorAdjustLayer : null,
+        hueLayer : null,
         filterLayer : null
     });
 
@@ -79,9 +80,13 @@ define(function(require){
         var filterLayer = new emage.Layer();
         viewport.processor.add(filterLayer);
         var colorAdjustLayer = new emage.Layer("buildin.coloradjust");
+        var hueLayer = new emage.Layer("buildin.hue");
         viewport.processor.add(colorAdjustLayer);
+        viewport.processor.add(hueLayer);
+
         this.colorAdjustLayer = colorAdjustLayer;
         this.filterLayer = filterLayer;
+        this.hueLayer = hueLayer;
 
         // viewport.setImage('../file_upload/thumb/1.jpg');
         var img = new Image();

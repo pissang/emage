@@ -26,7 +26,7 @@ define(function(require){
             quantizationLevels = 10;
         this.parameters = {
             threshold : {
-                ui : "range",
+                ui : "slider",
                 min : 0,
                 max : 2,
                 get value(){
