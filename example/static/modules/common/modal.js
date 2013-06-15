@@ -2,10 +2,10 @@ define(function(require){
 
     var qpf = require("qpf");
     var Clazz = qpf.use("core/clazz");
-    var Window = qpf.use("components/container/window");
-    var Container = qpf.use("components/container/container");
-    var Inline = qpf.use("components/container/inline");
-    var Button = qpf.use("components/meta/button");
+    var Window = qpf.use("container/window");
+    var Container = qpf.use("container/container");
+    var Inline = qpf.use("container/inline");
+    var Button = qpf.use("meta/button");
     var ko = require("knockout");
 
     var wind = new Window({

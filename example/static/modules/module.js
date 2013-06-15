@@ -7,7 +7,7 @@
 define(function(require){
 
     var qpf = require("qpf");
-    var Base = qpf.use("components/base");
+    var Base = qpf.use("base");
     var ko = require("knockout");
     var XMLParser = qpf.use("core/xmlparser");
     var Derive = qpf.use("core/mixin/derive");

@@ -65,7 +65,7 @@ module.exports = function(grunt){
                     out : "dist/emage.js",
                     onBuildWrite : function(moduleName, path, content){
                         // Remove the text plugin and convert to a normal module
-                        // Or the text plugin will have some problem when optimize the project based on qtek which also has a text plugin
+                        // Or the text plugin will have some problem when optimize the project based on emage which also has a text plugin
                         // https://groups.google.com/forum/?fromgroups#!msg/requirejs/jiaDogbA1EQ/jKrHL0gs21UJ
                         // http://stackoverflow.com/questions/10196977/how-can-i-prevent-the-require-js-optimizer-from-including-the-text-plugin-in-opt
                         content = content.replace(/define\([\'\"]text\!(.*?)[\'\"]/g, "define('$1'");

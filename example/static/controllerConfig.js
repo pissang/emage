@@ -17,16 +17,6 @@ define({
             "url" : "*"
         }
     },
-    "parameters" : {
-        // "modules/layers/index" : {
-        //     "url" : "*"
-        // }
-    },
-    "histogram" : {
-        "modules/histogram/index" : {
-            "url" : "*"
-        }
-    },
     "imageList" : {
         "modules/imagelist/index" : {
             "url" : "*"

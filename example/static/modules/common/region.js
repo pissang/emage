@@ -5,8 +5,8 @@
 define(function(require){
     
     var qpf = require("qpf");
-    var Meta = qpf.use("components/meta/meta");
-    var Base = qpf.use("components/base");
+    var Meta = qpf.use("meta/meta");
+    var Base = qpf.use("base");
     var ko = require("knockout");
     var _ = require("_")
 
@@ -114,7 +114,7 @@ define(function(require){
 
                         self._moduleCache[modulePath] = module;
                         self._currentModule = module;
-                        self.afterResize();
+                        self.onResize();
                     }
                 })
             }else{
@@ -123,18 +123,18 @@ define(function(require){
                 module.setContext(context);
 
                 this._currentModule = module;
-                this.afterResize();
+                this.onResize();
             }
 
             next();
         },
 
-        afterResize : function(){
+        onResize : function(){
             if( this._currentModule && this._currentModule.mainComponent){
                 this._currentModule.mainComponent.width( this.$el.width() );
                 this._currentModule.mainComponent.height( this.$el.height() );
             }
-            Base.prototype.afterResize.call(this);
+            Base.prototype.onResize.call(this);
 
         }
     })

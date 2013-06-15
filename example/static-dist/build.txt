@@ -6,9 +6,9 @@ style/animate.css
 app.js
 ----------------
 lib/qpf.js
+lib/underscore.js
 lib/knockout.js
 lib/jquery.js
-lib/underscore.js
 modules/module.js
 text.js
 text!modules/filters/filters.xml

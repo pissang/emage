@@ -2,7 +2,7 @@ define(function(require){
 
     var qpf = require("qpf");
     var listItem = require("./listitem");
-    var Container = qpf.use("components/container/container");
+    var Container = qpf.use("container/container");
     var ko = require("knockout");
 
     var List = Container.derive(function(){
@@ -76,7 +76,7 @@ define(function(require){
                     children.splice(item.index, 0, newChild);
                     newChildren.push(newChild);
                 }
-            }, this)
+            }, this);
             this.children( result );
             // render after it is appended in the dom
             // so the component like range will be resized proply

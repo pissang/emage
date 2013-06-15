@@ -2,7 +2,7 @@
 define(function(require){
 
     var qpf = require("qpf");
-    var Meta = qpf.use("components/meta/meta");
+    var Meta = qpf.use("meta/meta");
     var ko = require("knockout");
     var XMLParser = qpf.use("core/xmlparser");
     var _ = require("_");

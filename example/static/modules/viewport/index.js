@@ -48,7 +48,7 @@ define(function(require){
             }
         },
 
-        afterResize : function(){
+        onResize : function(){
             viewport.resize();
         },
 

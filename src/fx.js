@@ -1,6 +1,6 @@
 /**
  * Interface for all fx
- * Each fx input texture channel and color channel
+ * Each fx input texture channel and output color channel
  */
 define(function(require){
 

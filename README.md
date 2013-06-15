@@ -124,7 +124,7 @@ buildin.sketch
 
 ####Histogram compute####
 
-Histogram compute is done in shaders and is quite effecient
+Histogram compute is done in shaders and is quite efficient
 	
 	// Pass in the image you want to compute histogram
 	var histogram = new emage.Histogram(image);

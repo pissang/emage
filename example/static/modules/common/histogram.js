@@ -5,7 +5,7 @@ define(function(require){
     var emage = require("emage");
     var ko = require("knockout");
     var qtek2d = emage.qtek["2d"];
-    var Meta = qpf.use("components/meta/meta");
+    var Meta = qpf.use("meta/meta");
 
     var Histogram = Meta.derive(function(){
 
@@ -165,7 +165,7 @@ define(function(require){
             this.$el[0].appendChild( this._stage.canvas );
         },
 
-        afterResize : function(){
+        onResize : function(){
             if(this._stage){
                 this._stage.resize( this.$el.width(), this.$el.height() );
             }

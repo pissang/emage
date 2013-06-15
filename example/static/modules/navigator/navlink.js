@@ -1,7 +1,7 @@
 define(function(){
 
     var qpf = require("qpf");
-    var Meta = qpf.use("components/meta/meta");
+    var Meta = qpf.use("meta/meta");
     var ko = require("knockout");
 
     var NavLink = Meta.derive(function(){

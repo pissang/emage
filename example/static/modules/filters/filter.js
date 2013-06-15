@@ -1,6 +1,6 @@
 define(function(require){
     var qpf = require("qpf");
-    var Widget = qpf.use("components/widget/widget");
+    var Widget = qpf.use("widget/widget");
     var ko = require("knockout");
     var filterHTML = require("text!./filter.html");
     var viewport = require("../viewport/index");

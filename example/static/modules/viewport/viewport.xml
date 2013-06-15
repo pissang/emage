@@ -1,4 +1,4 @@
-<container id="Viewport" onresize="@binding[afterResize]">
+<container id="Viewport" onresize="@binding[onResize]">
 	<viewport></viewport>
     <nativehtml class="draghint">
         <![CDATA[ <p>DRAG AND DROP THE IMAGE</p> ]]>
