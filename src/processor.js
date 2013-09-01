@@ -18,7 +18,7 @@ define(function(require){
 
         this.layers = [];
 
-        this._inputNode = new qtek3d.compositor.graph.TextureNode({
+        this._inputNode = new qtek3d.compositor.TextureNode({
             texture : new qtek3d.texture.Texture2D({
                 image : null
             }),
@@ -31,7 +31,7 @@ define(function(require){
                 }
             }
         });
-        this._outputNode = new qtek3d.compositor.graph.Node({
+        this._outputNode = new qtek3d.compositor.Node({
             shader : qtek3d.Shader.source("buildin.compositor.output"),
             inputs : {
                 "texture" : {

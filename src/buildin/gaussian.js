@@ -8,7 +8,7 @@ define(function(require){
         
         FX.call(this);
 
-        this.node = new qtek3d.compositor.graph.Group({
+        this.node = new qtek3d.compositor.Group({
            inputs : {
                 "texture" : {
                     node : null,
@@ -20,7 +20,7 @@ define(function(require){
            }
         });
 
-        var gaussian_h = new qtek3d.compositor.graph.Node({
+        var gaussian_h = new qtek3d.compositor.Node({
             name : "gaussian_h",
             shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_h"),
             groupInputs : {
@@ -33,7 +33,7 @@ define(function(require){
             }
         });
 
-        var gaussian_v = new qtek3d.compositor.graph.Node({
+        var gaussian_v = new qtek3d.compositor.Node({
             name : "gaussian_v",
             shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_v"),
             inputs : {

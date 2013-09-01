@@ -5,6 +5,7 @@ define(function(require){
     var emage = require("emage");
     var ko = require("knockout");
     var qtek2d = emage.qtek["2d"];
+    var Vector2 = emage.qtek.core.Vector2;
     var Meta = qpf.use("meta/meta");
 
     var Histogram = Meta.derive(function(){
@@ -13,10 +14,11 @@ define(function(require){
 
             image : null,
 
-            _stage : new qtek2d.Renderer(),
-            _scene : new qtek2d.Scene(),
+            _layer : new qtek2d.Layer({
+                enablePicking : false
+            }),
             _paths : {
-                red : new qtek2d.renderable.Path({
+                red : new qtek2d.shape.Path({
                     stroke : false,
                     style : new qtek2d.Style({
                         fill : "red",
@@ -24,7 +26,7 @@ define(function(require){
                         shadow : '0 -2 2 #333'
                     })
                 }),
-                green : new qtek2d.renderable.Path({
+                green : new qtek2d.shape.Path({
                     stroke : false,
                     style : new qtek2d.Style({
                         fill : "green",
@@ -32,7 +34,7 @@ define(function(require){
                         shadow : '0 -2 2 #333'
                     })
                 }),
-                blue : new qtek2d.renderable.Path({
+                blue : new qtek2d.shape.Path({
                     stroke : false,
                     style : new qtek2d.Style({
                         fill : "blue",
@@ -41,21 +43,21 @@ define(function(require){
                     })
                 }),
 
-                redStroke : new qtek2d.renderable.Path({
+                redStroke : new qtek2d.shape.Path({
                     fill : false,
                     style : new qtek2d.Style({
                         stroke : "#950000",
                         globalAlpha : 0.7
                     })
                 }),
-                greenStroke : new qtek2d.renderable.Path({
+                greenStroke : new qtek2d.shape.Path({
                     fill : false,
                     style : new qtek2d.Style({
                         stroke : "#009500",
                         globalAlpha : 0.7
                     })
                 }),
-                blueStroke : new qtek2d.renderable.Path({
+                blueStroke : new qtek2d.shape.Path({
                     fill : false,
                     style : new qtek2d.Style({
                         stroke : "#000095",
@@ -76,13 +78,13 @@ define(function(require){
 
         initialize : function(){
 
-            this._scene.add( this._paths.red);
-            this._scene.add( this._paths.green);
-            this._scene.add( this._paths.blue);
+            this._layer.add( this._paths.red);
+            this._layer.add( this._paths.green);
+            this._layer.add( this._paths.blue);
 
-            this._scene.add( this._paths.redStroke);
-            this._scene.add( this._paths.greenStroke);
-            this._scene.add( this._paths.blueStroke);
+            this._layer.add( this._paths.redStroke);
+            this._layer.add( this._paths.greenStroke);
+            this._layer.add( this._paths.blueStroke);
 
             this._histogram.downSample = 1/8;
         },
@@ -107,7 +109,7 @@ define(function(require){
             this.updatePath('green', histogramArray.green);
             this.updatePath('blue', histogramArray.blue);
 
-            this._stage.render( this._scene );
+            this._layer.render();
         },
 
         initPath : function( field ){
@@ -116,18 +118,18 @@ define(function(require){
                 sample = this.sample(),
                 unit = this.$el.width()/256*sample;
             path.segments = [{
-                point : [0, height]
+                point : new Vector2(0, height)
             }];
             var offset = 0;
             for(var i =0; i < 256; i+=sample){
                 path.segments.push({
-                    point : [offset, 0]
+                    point : new Vector2(offset, 0)
                 })
                 offset += unit;
             }
             path.pushPoints([
-                [this.$el.width(), height],
-                [0, height],
+                new Vector2(this.$el.width(), height),
+                new Vector2(0, height),
             ])
 
             this._paths[field+"Stroke"].segments = path.segments;
@@ -138,9 +140,9 @@ define(function(require){
                 height = this.height(),
                 sample = this.sample();
             for( var i = sample; i < 257; i+=sample){
-                path.segments[i/sample].point[1] = (1-array[i-1])*height
+                path.segments[i/sample].point.y = (1-array[i-1])*height
             }
-            path.smooth(1);
+            // path.smooth(1);
         },
 
         getNormalizedHistogram : function(){
@@ -162,12 +164,12 @@ define(function(require){
         },
 
         afterRender : function(){
-            this.$el[0].appendChild( this._stage.canvas );
+            this.$el[0].appendChild( this._layer.canvas );
         },
 
         onResize : function(){
-            if(this._stage){
-                this._stage.resize( this.$el.width(), this.$el.height() );
+            if(this._layer){
+                this._layer.resize( this.$el.width(), this.$el.height() );
             }
             this.initPath('red');
             this.initPath('green');

@@ -8,7 +8,7 @@ define(function(require){
         
         FX.call(this);
 
-        var node = new qtek3d.compositor.graph.Node({
+        var node = new qtek3d.compositor.Node({
             shader : require("text!shaders/sobel.essl"),
             inputs : {
                 "texture" : {

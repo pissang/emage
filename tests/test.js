@@ -16,7 +16,7 @@ require(["../src/processor",
     processor.image = img;
     document.body.appendChild(processor.canvas);
     processor.canvas.style.width = 1000 + "px";
-    var layer = new Layer("buildin.lensblur");
+    var layer = new Layer("buildin.gaussian");
     processor.add(layer);
     // layer2.set("gamma", 2.0)
 

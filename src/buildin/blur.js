@@ -8,7 +8,7 @@ define(function(require){
         
         FX.call(this);
 
-        this.node = new qtek3d.compositor.graph.Group({
+        this.node = new qtek3d.compositor.Group({
            inputs : {
                 "texture" : {
                     node : null,
@@ -20,7 +20,7 @@ define(function(require){
            }
         });
 
-        var blur_h = new qtek3d.compositor.graph.Node({
+        var blur_h = new qtek3d.compositor.Node({
             shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_h"),
             groupInputs : {
                 "texture" : "texture"
@@ -32,7 +32,7 @@ define(function(require){
             }
         });
 
-        var blur_v = new qtek3d.compositor.graph.Node({
+        var blur_v = new qtek3d.compositor.Node({
             shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_v"),
             inputs : {
                 "texture" : {

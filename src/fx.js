@@ -38,7 +38,7 @@ define(function(require){
         if( ! this.node){
             return;
         }
-        if(this.node.instanceof(qtek3d.compositor.graph.Group)){
+        if(this.node.instanceof(qtek3d.compositor.Group)){
             for(var i = 0; i < this.node.nodes.length; i++){
                 var node = this.node.nodes[i];
                 node.setParameters({

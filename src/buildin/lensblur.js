@@ -10,7 +10,7 @@ define(function(require){
 
         FX.call(this);
 
-        this.node = new qtek3d.compositor.graph.Group({
+        this.node = new qtek3d.compositor.Group({
             inputs : {
                 "texture" : {
                     node : null,
@@ -28,7 +28,7 @@ define(function(require){
             type : 'FLOAT'
         }
 
-        var gammaNode = new qtek3d.compositor.graph.Node({
+        var gammaNode = new qtek3d.compositor.Node({
             shader : require("text!shaders/gamma.essl"),
             groupInputs : {
                 "texture" : "texture"
@@ -40,7 +40,7 @@ define(function(require){
             }
         });
 
-        var blurPass1 = new qtek3d.compositor.graph.Node({
+        var blurPass1 = new qtek3d.compositor.Node({
             shader : qtek3d.Shader.source("emage.hexagonal_blur_1"),
             inputs : {
                 "texture" : {
@@ -55,7 +55,7 @@ define(function(require){
             }
         });
 
-        var blurPass2 = new qtek3d.compositor.graph.Node({
+        var blurPass2 = new qtek3d.compositor.Node({
             shader : qtek3d.Shader.source("emage.hexagonal_blur_2"),
             inputs : {
                 "texture" : {
@@ -70,7 +70,7 @@ define(function(require){
             }
         });
 
-        var blurPass3 = new qtek3d.compositor.graph.Node({
+        var blurPass3 = new qtek3d.compositor.Node({
             shader : qtek3d.Shader.source("emage.hexagonal_blur_3"),
             inputs : {
                 "texture1" : {
@@ -89,7 +89,7 @@ define(function(require){
             }
         });
 
-        var gammaInverseNode = new qtek3d.compositor.graph.Node({
+        var gammaInverseNode = new qtek3d.compositor.Node({
             shader : require("text!shaders/gamma.essl"),
             inputs : {
                 "texture" : {
