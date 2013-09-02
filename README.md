@@ -19,7 +19,7 @@ Process the image
 
 
 	// Create a image processor
-	var processor = new emage.Processor(canvas);
+	var processor = new emage.Processor(canvas, image);
 	
 	// Create a layer
 	var blurLayer = new emage.Layer();	
@@ -124,7 +124,7 @@ buildin.sketch
 
 ####Histogram compute####
 
-Histogram compute is done in shaders and is quite efficient
+Histogram compute is done in shaders and can be quite efficient
 	
 	// Pass in the image you want to compute histogram
 	var histogram = new emage.Histogram(image);

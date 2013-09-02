@@ -142,7 +142,6 @@ define(function(require){
             for( var i = sample; i < 257; i+=sample){
                 path.segments[i/sample].point.y = (1-array[i-1])*height
             }
-            // path.smooth(1);
         },
 
         getNormalizedHistogram : function(){

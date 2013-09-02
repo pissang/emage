@@ -5,7 +5,7 @@ define(function(require){
     var Layer = require("./layer");
     var FX = require("./fx");
 
-    var Processor = function(canvas){
+    var Processor = function(canvas, image){
 
         this.canvas = canvas || document.createElement("canvas");
 
@@ -51,7 +51,9 @@ define(function(require){
             get : function(value){
                 return this._inputNode.texture.image
             }
-        })
+        });
+
+        this.image = image || null;
     }
 
     Processor.prototype.add = function(layer){

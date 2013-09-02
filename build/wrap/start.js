@@ -4,7 +4,7 @@
  		define( ["exports"], factory.bind(window) );
  	// No module loader
  	}else{
- 		factory(window["image"] = {});
+ 		factory(window["emage"] = {});
  	}
 
 })(function(_exports){
