@@ -55,6 +55,7 @@ define(function(require){
     // https://github.com/BradLarson/GPUImage
     require("./buildin/gaussian");
     require("./buildin/lensblur");
+    require("./buildin/boxblur");
     require("./buildin/coloradjust");
     require("./buildin/hue");
     require("./buildin/colormatrix");

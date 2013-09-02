@@ -1,0 +1,40 @@
+
+@export emage.box_blur_v
+
+uniform sampler2D texture; // the texture with the scene you want to blur
+varying vec2 v_Texcoord;
+ 
+uniform float blurSize : 3.0; 
+uniform float imageWidth : 512.0;
+
+void main(void)
+{
+   vec4 sum = vec4(0.0);
+ 
+   for(int i = 0; i < 40; i++){
+      sum += texture2D(texture, v_Texcoord + vec2(0.0, float(i-20) * blurSize / imageWidth));
+   }
+   gl_FragColor = sum / 40.0;
+}
+
+@end
+
+@export emage.box_blur_h
+
+uniform sampler2D texture;
+varying vec2 v_Texcoord;
+ 
+uniform float blurSize : 3.0;
+uniform float imageHeight : 512.0;
+ 
+void main(void)
+{
+   vec4 sum = vec4(0.0);
+ 
+   for(int i = 0; i < 40; i++){
+      sum += texture2D(texture, v_Texcoord + vec2(float(i-20) * blurSize / imageHeight, 0.0));
+   }
+   gl_FragColor = sum / 40.0;
+}
+
+@end

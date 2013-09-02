@@ -4,7 +4,9 @@ define(function(require){
     var qtek3d = qtek["3d"];
     var FX = require("../fx");
 
-    var Gaussian = function(){
+    qtek3d.Shader.import(require("text!shaders/box_blur.essl"));
+
+    var BoxBlur = function(){
         
         FX.call(this);
 
@@ -27,9 +29,9 @@ define(function(require){
             wrapT : 'REPEAT'
         }
 
-        var gaussian_h = new qtek3d.compositor.Node({
-            name : "gaussian_h",
-            shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_h"),
+        var boxblur_h = new qtek3d.compositor.Node({
+            name : "boxblur_h",
+            shader : qtek3d.Shader.source("emage.box_blur_h"),
             groupInputs : {
                 "texture" : "texture"
             },
@@ -40,12 +42,12 @@ define(function(require){
             }
         });
 
-        var gaussian_v = new qtek3d.compositor.Node({
-            name : "gaussian_v",
-            shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_v"),
+        var boxblur_v = new qtek3d.compositor.Node({
+            name : "boxblur_v",
+            shader : qtek3d.Shader.source("emage.box_blur_v"),
             inputs : {
                 "texture" : {
-                    node : gaussian_h,
+                    node : boxblur_h,
                     pin : "color"
                 }
             },
@@ -59,8 +61,8 @@ define(function(require){
             }
         });
 
-        this.node.add(gaussian_h);
-        this.node.add(gaussian_v);
+        this.node.add(boxblur_h);
+        this.node.add(boxblur_v);
 
         var blurSize = 2.0;
 
@@ -76,8 +78,8 @@ define(function(require){
                 },
                 set value(val){
                     blurSize = val;
-                    gaussian_v.setParameter("blurSize", val);
-                    gaussian_h.setParameter("blurSize", val);
+                    boxblur_v.setParameter("blurSize", val);
+                    boxblur_h.setParameter("blurSize", val);
                 }
             }
         }
@@ -85,13 +87,13 @@ define(function(require){
         this.reset();
     }
 
-    Gaussian.prototype = new FX();
-    Gaussian.prototype.reset = function(){
+    BoxBlur.prototype = new FX();
+    BoxBlur.prototype.reset = function(){
         this.parameters.blurSize.value = 2.0;
     }
-    Gaussian.prototype.constructor = Gaussian;
+    BoxBlur.prototype.constructor = BoxBlur;
 
-    FX.export("buildin.gaussian", Gaussian);
+    FX.export("buildin.boxblur", BoxBlur);
 
-    return Gaussian;
+    return BoxBlur;
 })

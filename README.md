@@ -67,7 +67,13 @@ buildin.gaussian
 + blurSize : 2.0
 
 -----
+#####Box Blur#####
 
+buildin.boxblur
+
++ blurSize : 2.0
+
+-----
 #####Lens Blur#####
 
 buildin.lensblur

@@ -18604,6 +18604,13 @@ define('src/buildin/gaussian',['require','qtek','../fx'],function(require){
            }
         });
 
+        var parameters = {
+            width : this.imageSize.width,
+            height : this.imageSize.height,
+            wrapS : 'REPEAT',
+            wrapT : 'REPEAT'
+        }
+
         var gaussian_h = new qtek3d.compositor.Node({
             name : "gaussian_h",
             shader : qtek3d.Shader.source("buildin.compositor.gaussian_blur_h"),
@@ -18612,7 +18619,7 @@ define('src/buildin/gaussian',['require','qtek','../fx'],function(require){
             },
             outputs : {
                 "color" : {
-                    parameters : this.imageSize
+                    parameters : parameters
                 }
             }
         });
@@ -18628,7 +18635,7 @@ define('src/buildin/gaussian',['require','qtek','../fx'],function(require){
             },
             outputs : {
                 "color" : {
-                    parameters : this.imageSize
+                    parameters : parameters
                 }
             },
             groupOutputs : {
@@ -18843,6 +18850,107 @@ define('src/buildin/lensblur',['require','qtek','../fx','shaders/hexagonal_blur.
     FX.export("buildin.lensblur", LensBlur);
 
     return LensBlur;
+});
+define('shaders/box_blur.essl',[],function () { return '\n@export emage.box_blur_v\n\nuniform sampler2D texture; // the texture with the scene you want to blur\nvarying vec2 v_Texcoord;\n \nuniform float blurSize : 3.0; \nuniform float imageWidth : 512.0;\n\nvoid main(void)\n{\n   vec4 sum = vec4(0.0);\n \n   for(int i = 0; i < 40; i++){\n      sum += texture2D(texture, v_Texcoord + vec2(0.0, float(i-20) * blurSize / imageWidth));\n   }\n   gl_FragColor = sum / 40.0;\n}\n\n@end\n\n@export emage.box_blur_h\n\nuniform sampler2D texture;\nvarying vec2 v_Texcoord;\n \nuniform float blurSize : 3.0;\nuniform float imageHeight : 512.0;\n \nvoid main(void)\n{\n   vec4 sum = vec4(0.0);\n \n   for(int i = 0; i < 40; i++){\n      sum += texture2D(texture, v_Texcoord + vec2(float(i-20) * blurSize / imageHeight, 0.0));\n   }\n   gl_FragColor = sum / 40.0;\n}\n\n@end';});
+
+define('src/buildin/boxblur',['require','qtek','../fx','shaders/box_blur.essl'],function(require){
+
+    var qtek = require("qtek");
+    var qtek3d = qtek["3d"];
+    var FX = require("../fx");
+
+    qtek3d.Shader.import(require('shaders/box_blur.essl'));
+
+    var BoxBlur = function(){
+        
+        FX.call(this);
+
+        this.node = new qtek3d.compositor.Group({
+           inputs : {
+                "texture" : {
+                    node : null,
+                    pin : "color"
+                }
+           },
+           outputs : {
+                "color" : {}
+           }
+        });
+
+        var parameters = {
+            width : this.imageSize.width,
+            height : this.imageSize.height,
+            wrapS : 'REPEAT',
+            wrapT : 'REPEAT'
+        }
+
+        var boxblur_h = new qtek3d.compositor.Node({
+            name : "boxblur_h",
+            shader : qtek3d.Shader.source("emage.box_blur_h"),
+            groupInputs : {
+                "texture" : "texture"
+            },
+            outputs : {
+                "color" : {
+                    parameters : parameters
+                }
+            }
+        });
+
+        var boxblur_v = new qtek3d.compositor.Node({
+            name : "boxblur_v",
+            shader : qtek3d.Shader.source("emage.box_blur_v"),
+            inputs : {
+                "texture" : {
+                    node : boxblur_h,
+                    pin : "color"
+                }
+            },
+            outputs : {
+                "color" : {
+                    parameters : parameters
+                }
+            },
+            groupOutputs : {
+                "color" : "color"
+            }
+        });
+
+        this.node.add(boxblur_h);
+        this.node.add(boxblur_v);
+
+        var blurSize = 2.0;
+
+        // Parameters of gaussian blur
+        this.parameters = {
+            blurSize : {
+                max : 10.0,
+                min : 0.0,
+                step : 0.1,
+                ui : "slider",
+                get value(){
+                    return blurSize;
+                },
+                set value(val){
+                    blurSize = val;
+                    boxblur_v.setParameter("blurSize", val);
+                    boxblur_h.setParameter("blurSize", val);
+                }
+            }
+        }
+
+        this.reset();
+    }
+
+    BoxBlur.prototype = new FX();
+    BoxBlur.prototype.reset = function(){
+        this.parameters.blurSize.value = 2.0;
+    }
+    BoxBlur.prototype.constructor = BoxBlur;
+
+    FX.export("buildin.boxblur", BoxBlur);
+
+    return BoxBlur;
 });
 define('src/buildin/coloradjust',['require','qtek','../fx'],function(require){
 
@@ -19334,7 +19442,7 @@ define('src/buildin/grayscale',['require','qtek','../fx'],function(require){
 
     return GrayScale;
 });
-define('src/layer',['require','qtek','./fx','./buildin/gaussian','./buildin/lensblur','./buildin/coloradjust','./buildin/hue','./buildin/colormatrix','./buildin/sepia','./buildin/lut','./buildin/sobel','./buildin/sketch','./buildin/toon','./buildin/grayscale'],function(require){
+define('src/layer',['require','qtek','./fx','./buildin/gaussian','./buildin/lensblur','./buildin/boxblur','./buildin/coloradjust','./buildin/hue','./buildin/colormatrix','./buildin/sepia','./buildin/lut','./buildin/sobel','./buildin/sketch','./buildin/toon','./buildin/grayscale'],function(require){
 
     var qtek = require("qtek");
     var FX = require("./fx");
@@ -19391,6 +19499,7 @@ define('src/layer',['require','qtek','./fx','./buildin/gaussian','./buildin/lens
     // https://github.com/BradLarson/GPUImage
     require("./buildin/gaussian");
     require("./buildin/lensblur");
+    require("./buildin/boxblur");
     require("./buildin/coloradjust");
     require("./buildin/hue");
     require("./buildin/colormatrix");
@@ -19410,7 +19519,7 @@ define('src/processor',['require','qtek','./layer','./fx'],function(require){
     var Layer = require("./layer");
     var FX = require("./fx");
 
-    var Processor = function(canvas){
+    var Processor = function(canvas, image){
 
         this.canvas = canvas || document.createElement("canvas");
 
@@ -19431,7 +19540,9 @@ define('src/processor',['require','qtek','./layer','./fx'],function(require){
                 "color" : {
                     parameters : {
                         width : 1024,
-                        height : 1024
+                        height : 1024,
+                        wrapS : 'REPEAT',
+                        wrapT : 'REPEAT'
                     }
                 }
             }
@@ -19456,7 +19567,9 @@ define('src/processor',['require','qtek','./layer','./fx'],function(require){
             get : function(value){
                 return this._inputNode.texture.image
             }
-        })
+        });
+
+        this.image = image || null;
     }
 
     Processor.prototype.add = function(layer){
