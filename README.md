@@ -5,7 +5,7 @@ EMAGE is a webgl based image processing library, it is based on the webgl librar
 
 The [example](http://pissang.github.com/emage/example/#/) 
 
-####Simple Usage####
+#### Simple Usage
 
 Import the library
 	
@@ -55,26 +55,26 @@ Process the image
 	img.src = canvas.toDataURL();
 	
 
-####Supported filters####
+#### Supported filters
 
 Most of the filters is from [GPUImage](https://github.com/BradLarson/GPUImage)
 
 -----
-#####Gaussian Blur#####
+##### Gaussian Blur
 
 buildin.gaussian
 
 + blurSize : 2.0
 
 -----
-#####Box Blur#####
+##### Box Blur
 
 buildin.boxblur
 
 + blurSize : 2.0
 
 -----
-#####Lens Blur#####
+##### Lens Blur
 
 buildin.lensblur
 
@@ -82,7 +82,7 @@ buildin.lensblur
 + brightness : 6.0
 
 -----
-#####Color Adjust#####
+##### Color Adjust
 
 buildin.coloradjust
 
@@ -93,7 +93,7 @@ buildin.coloradjust
 + saturation : 1.0
 
 -----
-#####Color Matrix#####
+##### Color Matrix
 
 buildin.colormatrix
 
@@ -101,34 +101,34 @@ buildin.colormatrix
 + intensity : 1.0
 
 -----
-#####Sepia#####
+##### Sepia
 
 buildin.sepia
 
 -----
-#####Color Lookup#####
+##### Color Lookup
 
 buildin.lut
 
 + lookup : Image
 
 -----
-#####Sobel Edge Detection#####
+##### Sobel Edge Detection
 
 buildin.sobel
 
 -----
-#####Toon Effect#####
+##### Toon Effect
 
 buildin.toon
 
 -----
-#####Sketch Effect#####
+##### Sketch Effect
 
 buildin.sketch
 
 
-####Histogram compute####
+#### Histogram compute
 
 Histogram compute is done in shaders and can be quite efficient
 	
