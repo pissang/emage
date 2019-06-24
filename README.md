@@ -12,12 +12,11 @@ Import the library
 	<script type="https://github.com/pissang/emage/blob/master/dist/emage.min.js"></script>
 
 Or in the AMD environment
-	
-	var emage =	require("emage")
-
+```js	
+var emage =	require("emage")
+```
 Process the image
-
-
+```js
 	// Create a image processor
 	var processor = new emage.Processor(canvas, image);
 	
@@ -53,7 +52,7 @@ Process the image
 	var canvas = emage.canvas;
 	var img = new Image;
 	img.src = canvas.toDataURL();
-	
+```	
 
 #### Supported filters
 
@@ -131,7 +130,7 @@ buildin.sketch
 #### Histogram compute
 
 Histogram compute is done in shaders and can be quite efficient
-	
+```js
 	// Pass in the image you want to compute histogram
 	var histogram = new emage.Histogram(image);
 	
@@ -145,3 +144,4 @@ Histogram compute is done in shaders and can be quite efficient
 	// And other channels
 	var blueChannel = histogram.channels.blue;
 	var luminanceChannel = histogram.channels.luminance;
+```
